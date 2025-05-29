@@ -5,7 +5,6 @@ target 'Sportycus' do
  
   pod 'Kingfisher', '~> 7.0'
   pod 'ReachabilitySwift'
-  pod 'Alamofire'
  
   post_install do |installer|
     installer.pods_project.targets.each do |target|
