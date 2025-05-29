@@ -50,6 +50,73 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C53F7C772DE88F46003B4AAE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD0B822DE87D6700273B03 /* SceneDelegate.swift */,
+				C5CD0B802DE87D6700273B03 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C53F7C782DE88FEA003B4AAE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD0B8B2DE87D6B00273B03 /* LaunchScreen.storyboard */,
+				C5CD0B892DE87D6B00273B03 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C53F7C792DE8900B003B4AAE /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				C53F7C7A2DE89016003B4AAE /* Home */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		C53F7C7A2DE89016003B4AAE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C53F7C7D2DE8902A003B4AAE /* Presenter */,
+				C53F7C7C2DE89024003B4AAE /* View */,
+				C53F7C7B2DE8901F003B4AAE /* Model */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C53F7C7B2DE8901F003B4AAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C53F7C7E2DE89198003B4AAE /* Service */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C53F7C7C2DE89024003B4AAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD0B862DE87D6700273B03 /* Main.storyboard */,
+				C5CD0B842DE87D6700273B03 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C53F7C7D2DE8902A003B4AAE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C53F7C7E2DE89198003B4AAE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		C5CD0B742DE87D6700273B03 = {
 			isa = PBXGroup;
 			children = (
@@ -71,12 +138,9 @@
 		C5CD0B7F2DE87D6700273B03 /* Sportycus */ = {
 			isa = PBXGroup;
 			children = (
-				C5CD0B802DE87D6700273B03 /* AppDelegate.swift */,
-				C5CD0B822DE87D6700273B03 /* SceneDelegate.swift */,
-				C5CD0B842DE87D6700273B03 /* ViewController.swift */,
-				C5CD0B862DE87D6700273B03 /* Main.storyboard */,
-				C5CD0B892DE87D6B00273B03 /* Assets.xcassets */,
-				C5CD0B8B2DE87D6B00273B03 /* LaunchScreen.storyboard */,
+				C53F7C792DE8900B003B4AAE /* Features */,
+				C53F7C782DE88FEA003B4AAE /* Resources */,
+				C53F7C772DE88F46003B4AAE /* App */,
 				C5CD0B8E2DE87D6B00273B03 /* Info.plist */,
 			);
 			path = Sportycus;
@@ -88,7 +152,6 @@
 				9679AD85F2A53A2F1A8244F9 /* Pods-Sportycus.debug.xcconfig */,
 				6EA7561CF847923C97E4D67C /* Pods-Sportycus.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
