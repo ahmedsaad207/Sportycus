@@ -1,0 +1,13 @@
+# Xcode temporary files and user settings
+DerivedData/
+build/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.xcodeproj/xcuserdata/
+
+# macOS system files
+.DS_Store
+
+# JetBrains IDEs (AppCode, etc.)
+.idea/
