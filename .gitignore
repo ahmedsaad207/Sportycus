@@ -10,4 +10,96 @@ build/
 .DS_Store
 
 # JetBrains IDEs (AppCode, etc.)
+
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+build/
+DerivedData/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+Dependencies/
+.accio/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+iOSInjectionProject/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Xcode
+*.xcuserdata
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Derived data and build
+DerivedData/
+build/
+*.hmap
+*.ipa
+*.app
+*.dSYM
+*.swiftmodule
+*.swiftdoc
+*.swiftsourceinfo
+*.swiftinterface
+
+# SwiftPM (optional if using)
+.build/
+Packages/
+Package.resolved
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# SPM/Xcode workspace
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcshareddata/WorkspaceSettings.xcsettings
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Temporary files
+*.tmp
+*.orig
+*.DS_Store
+
+# Xcode environment-specific
+*.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+
 .idea/
