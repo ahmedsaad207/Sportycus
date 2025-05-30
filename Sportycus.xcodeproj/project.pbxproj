@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,6 +37,8 @@
 		C5CD0B832DE87D6700273B03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD0B822DE87D6700273B03 /* SceneDelegate.swift */; };
 		C5CD0B8A2DE87D6B00273B03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CD0B892DE87D6B00273B03 /* Assets.xcassets */; };
 		C5CD0B8D2DE87D6B00273B03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5CD0B8B2DE87D6B00273B03 /* LaunchScreen.storyboard */; };
+		F07FE35A2DEA025D002904ED /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FE3592DEA025D002904ED /* HomePresenter.swift */; };
+		F0E4DA722DEA006100F49AD2 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4DA712DEA006100F49AD2 /* Sport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +76,26 @@
 		C5CD0B892DE87D6B00273B03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5CD0B8C2DE87D6B00273B03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5CD0B8E2DE87D6B00273B03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F07FE3592DEA025D002904ED /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomePresenter.swift; path = Sportycus/Features/Home/HomePresenter.swift; sourceTree = SOURCE_ROOT; };
+		F0E4DA712DEA006100F49AD2 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sport.swift; path = Sportycus/Features/Home/Sport.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F0E4DA2E2DE9E9BD00F49AD2 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CellID.swift,
+				Navigate.swift,
+				StoryboardID.swift,
+			);
+			target = C5CD0B7C2DE87D6700273B03 /* Sportycus */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F0E4DA2A2DE9E9AE00F49AD2 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F0E4DA2E2DE9E9BD00F49AD2 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
+		F0E4DA372DE9FDA100F49AD2 /* Cells */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Cells; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C5CD0B7A2DE87D6700273B03 /* Frameworks */ = {
@@ -163,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				C53F7C7E2DE89198003B4AAE /* Service */,
+				F0E4DA712DEA006100F49AD2 /* Sport.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +192,7 @@
 		C53F7C7C2DE89024003B4AAE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F0E4DA372DE9FDA100F49AD2 /* Cells */,
 				C56F6B322DE8F5A000FEAC71 /* Home.storyboard */,
 				C56F6B342DE8F9DC00FEAC71 /* HomeCollectionViewController.swift */,
 			);
@@ -179,6 +202,7 @@
 		C53F7C7D2DE8902A003B4AAE /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				F07FE3592DEA025D002904ED /* HomePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -334,7 +358,9 @@
 		C5CD0B7F2DE87D6700273B03 /* Sportycus */ = {
 			isa = PBXGroup;
 			children = (
+
 				C515E0352DEA00680048AB35 /* Shared */,
+				F0E4DA2A2DE9E9AE00F49AD2 /* Utils */,
 				C53F7C792DE8900B003B4AAE /* Features */,
 				C53F7C782DE88FEA003B4AAE /* Resources */,
 				C53F7C772DE88F46003B4AAE /* App */,
@@ -368,6 +394,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F0E4DA372DE9FDA100F49AD2 /* Cells */,
 			);
 			name = Sportycus;
 			productName = Sportycus;
@@ -435,9 +464,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sportycus/Pods-Sportycus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sportycus/Pods-Sportycus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -474,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C515E02A2DE9E63F0048AB35 /* TeamInfoCell.swift in Sources */,
+				F07FE35A2DEA025D002904ED /* HomePresenter.swift in Sources */,
 				C56F6B552DE92B0400FEAC71 /* Team.swift in Sources */,
 				C56F6B352DE8F9DC00FEAC71 /* HomeCollectionViewController.swift in Sources */,
 				C56F6B372DE8F9EA00FEAC71 /* FavoriteCollectionViewController.swift in Sources */,
@@ -482,6 +516,7 @@
 				C5CD0B812DE87D6700273B03 /* AppDelegate.swift in Sources */,
 				C56F6B572DE92B5900FEAC71 /* Player.swift in Sources */,
 				C56F6B3E2DE9098C00FEAC71 /* League.swift in Sources */,
+				F0E4DA722DEA006100F49AD2 /* Sport.swift in Sources */,
 				C56F6B472DE90D8500FEAC71 /* LeagueTableViewController.swift in Sources */,
 				C56F6B432DE90B2A00FEAC71 /* LeagueService.swift in Sources */,
 				C515E0382DEA00920048AB35 /* LoadingIndicatorView.swift in Sources */,
