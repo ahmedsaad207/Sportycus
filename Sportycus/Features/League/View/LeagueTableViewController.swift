@@ -16,7 +16,7 @@ class LeagueTableViewController: UITableViewController, LeagueProtocol {
         networkIndicator.startAnimating()
        
         let presenter = LeaguePresenter(vc: self)
-        presenter.getLeagues(sport: "football")
+        presenter.getLeagues(sport: sport)
         
         let nib = UINib(nibName: "LeagueTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "leagueCell")
