@@ -2,7 +2,7 @@ import UIKit
 import Kingfisher
 
 class LeagueTableViewController: UITableViewController, LeagueProtocol {
-    var sport: String!
+    //var sport: String!
     var leagues: [League] = []
     
     var networkIndicator: UIActivityIndicatorView!
@@ -16,7 +16,7 @@ class LeagueTableViewController: UITableViewController, LeagueProtocol {
         networkIndicator.startAnimating()
        
         let presenter = LeaguePresenter(vc: self)
-        presenter.getLeagues(sport: sport)
+        //presenter.getLeagues(sport: sport)
         
         let nib = UINib(nibName: "LeagueTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "leagueCell")
