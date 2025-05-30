@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -52,6 +52,10 @@
 		F09E8D0F2DE99FA400414068 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomePresenter.swift; path = Sportycus/Features/Home/HomePresenter.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F09E8D112DE9B32500414068 /* TeamDetails */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TeamDetails; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		C5CD0B7A2DE87D6700273B03 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -93,6 +97,7 @@
 		C53F7C792DE8900B003B4AAE /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F09E8D112DE9B32500414068 /* TeamDetails */,
 				C56F6B382DE9095700FEAC71 /* League */,
 				C56F6B2C2DE8F3F800FEAC71 /* Favorite */,
 				C53F7C7A2DE89016003B4AAE /* Home */,
@@ -276,6 +281,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F09E8D112DE9B32500414068 /* TeamDetails */,
 			);
 			name = Sportycus;
 			productName = Sportycus;
