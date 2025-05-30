@@ -12,11 +12,20 @@ class LeagueDetailsController: UICollectionViewController {
 
     
     func setupAppBar(){
-        self.navigationItem.rightBarButtonItem =
+        let heartImage = UIImage(systemName: "heart")
+            let heartButton = UIBarButtonItem(
+                image: heartImage,
+                style: .plain,
+                target: self,
+                action: #selector(heartButtonTapped)
+            )
+            navigationItem.rightBarButtonItem = heartButton
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAppBar()
+        
 
     }
 
@@ -37,4 +46,7 @@ class LeagueDetailsController: UICollectionViewController {
         return cell
     }
 
+    @objc func heartButtonTapped() {
+        print("Heart button tapped")
+    }
 }
