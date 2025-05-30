@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -79,6 +79,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		F07E84862DEA1ADF004E1E70 /* LeagueDetails */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LeagueDetails; sourceTree = "<group>"; };
 		F0E4DA2A2DE9E9AE00F49AD2 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F0E4DA2E2DE9E9BD00F49AD2 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
 		F0E4DA372DE9FDA100F49AD2 /* Cells */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Cells; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -124,6 +125,7 @@
 		C53F7C792DE8900B003B4AAE /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F07E84862DEA1ADF004E1E70 /* LeagueDetails */,
 				C56F6B4E2DE9290700FEAC71 /* Team */,
 				C56F6B382DE9095700FEAC71 /* League */,
 				C56F6B2C2DE8F3F800FEAC71 /* Favorite */,
@@ -350,6 +352,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				F07E84862DEA1ADF004E1E70 /* LeagueDetails */,
 				F0E4DA372DE9FDA100F49AD2 /* Cells */,
 			);
 			name = Sportycus;
