@@ -11,9 +11,14 @@ private let reuseIdentifier = "Cell"
 
 class HomeCollectionViewController: UICollectionViewController {
 //3amel eh ya sa3dawy
+    
+    func setupAppBar(){
+        self.navigationItem.title = "Sports"
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupAppBar()
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
