@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -360,7 +360,6 @@
 		C5CD0B7F2DE87D6700273B03 /* Sportycus */ = {
 			isa = PBXGroup;
 			children = (
-
 				C515E0352DEA00680048AB35 /* Shared */,
 				F0E4DA2A2DE9E9AE00F49AD2 /* Utils */,
 				C53F7C792DE8900B003B4AAE /* Features */,
@@ -412,7 +411,6 @@
 		C5CD0B752DE87D6700273B03 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
