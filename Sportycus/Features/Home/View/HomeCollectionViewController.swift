@@ -9,27 +9,20 @@ import UIKit
 
 private let sportCellIdentifier = "SportCell"
 
-class HomeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    private let sportsImages = [
-        "football",
-        "basketball",
-        "tennis",
-        "cricket",
-    ]
-    
-    private let sportsTitles = [
-        "Football",
-        "Basketball",
-        "Tennis",
-        "Cricket",
-    ]
-    
+protocol HomeViewProtocol {
+    func navigateToLeague()
+}
+
+
+class HomeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomeViewProtocol {
+   
+    private var presenter: HomePresenterProtocol!
+
     func setupAppBar(){
         self.navigationItem.title = "Sports"
     }
     
-
     func registerNibs(){
         let nibSport = UINib(nibName: sportCellIdentifier, bundle: nil)
         collectionView.register(nibSport, forCellWithReuseIdentifier: sportCellIdentifier)
@@ -39,8 +32,7 @@ class HomeCollectionViewController: UICollectionViewController, UICollectionView
         super.viewDidLoad()
         setupAppBar()
         registerNibs()
-
-        
+        presenter = HomePresenter(view: self)
 
     }
 
@@ -59,17 +51,24 @@ class HomeCollectionViewController: UICollectionViewController, UICollectionView
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sportsImages.count
+        return presenter.sportsCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sportCellIdentifier, for: indexPath) as! SportCell
     
-        let sportImage = sportsImages[indexPath.row]
-        let sportTitle = sportsTitles[indexPath.row]
-        cell.config(imgName: sportImage, title: sportTitle)
-    
+        let sport = presenter.sport(at: indexPath.row)
+        cell.config(imgName: sport.sportImage, title: sport.sportTitle)
         return cell
     }
-
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.didSelectSport(at: indexPath.row)
+    }
+    
+    func navigateToLeague() {
+        let leaguestoryboard = UIStoryboard(name: StoryboardID.league.name, bundle: nil)
+        let leagueVC = leaguestoryboard.instantiateViewController(identifier: StoryboardID.league.identifier)
+        self.navigationController!.pushViewController(leagueVC, animated: true)
+    }
 }
