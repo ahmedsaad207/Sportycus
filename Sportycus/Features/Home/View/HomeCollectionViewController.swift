@@ -70,5 +70,6 @@ class HomeCollectionViewController: UICollectionViewController, UICollectionView
         let leaguestoryboard = UIStoryboard(name: StoryboardID.league.name, bundle: nil)
         let leagueVC = leaguestoryboard.instantiateViewController(identifier: StoryboardID.league.identifier) as! LeagueTableViewController
         leagueVC.presenter = LeaguePresenter(vc: leagueVC , sportName: sport)
+        self.navigationController!.pushViewController(leagueVC, animated: true)
     }
 }

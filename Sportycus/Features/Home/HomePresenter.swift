@@ -38,6 +38,6 @@ class HomePresenter: HomePresenterProtocol {
     }
 
     func didSelectSport(at index: Int) {
-        view?.navigateToLeague()
+        view?.navigateToLeague(sport: sports[index].sportTitle.lowercased())
     }
 }
