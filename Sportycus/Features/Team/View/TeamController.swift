@@ -6,7 +6,7 @@ protocol TeamViewProtocol {
 
 class TeamController: UITableViewController, TeamViewProtocol {
     var team: Team = Team()
-    var loadingView = LoadingIndicatorView()
+//    var loadingView = LoadingIndicatorView()
     var leagueId: Int!
     var sportName: String!
     var teamName: String!
@@ -14,7 +14,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingView.show(in:view)
+//        loadingView.show(in:view)
         
         title = "Team Info"
         let favButton = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(onFavoriteButtonClick))
@@ -34,7 +34,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
         team = response.result[0]
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.loadingView.hide()
+//            self.loadingView.hide()
         }
     }
     
