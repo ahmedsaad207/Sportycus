@@ -8,6 +8,10 @@
 import UIKit
 
 
+protocol LeagueDetailsViewProtocol{
+    func renderToView(data: [League])
+}
+
 class LeagueDetailsController: UICollectionViewController {
 
     

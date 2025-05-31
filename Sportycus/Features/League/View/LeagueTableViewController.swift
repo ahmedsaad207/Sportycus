@@ -56,9 +56,8 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let storyBoardLeagueDetails = UIStoryboard(name: "LeagueDetails", bundle: nil)
-//        let leagueDetailsVC = storyBoardLeagueDetails.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueTableViewController
-//        leagueDetailsVC.league = "" // pass for me sport name here
-//        navigationController?.pushViewController(leagueDetailsVC, animated: true)
+        let storyBoardLeagueDetails = UIStoryboard(name: "LeagueDetails", bundle: nil)
+        let leagueDetailsVC = storyBoardLeagueDetails.instantiateViewController(withIdentifier: "LeagueDetails")
+        navigationController?.pushViewController(leagueDetailsVC, animated: true)
     }
 }
