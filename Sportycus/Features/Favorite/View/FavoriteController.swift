@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class FavoriteCollectionViewController: UICollectionViewController {
+class FavoriteController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
