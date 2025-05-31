@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3783B214FFD56D0FE90FA8C4 /* Pods_Sportycus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2896390FBB9A2A68E12F22 /* Pods_Sportycus.framework */; };
+		7F8E90F5944EBFE7E3CAAA98 /* Pods_Sportycus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 632F5FCD633D22BDD1EF0344 /* Pods_Sportycus.framework */; };
 		C501CF7C2DEB3BC90015F4D8 /* Navigate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C501CF792DEB3BC80015F4D8 /* Navigate.swift */; };
 		C501CF7D2DEB3BC90015F4D8 /* CellID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C501CF7A2DEB3BC90015F4D8 /* CellID.swift */; };
 		C501CF7E2DEB3BC90015F4D8 /* StoryboardID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C501CF7B2DEB3BC90015F4D8 /* StoryboardID.swift */; };
-		C50BC4552DEB392800714A46 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BC4542DEB392800714A46 /* HomePresenter.swift */; };
 		C50BC4592DEB398000714A46 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BC4582DEB398000714A46 /* Sport.swift */; };
 		C5312C972DEB5EB100144FE1 /* LeagueDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5312C842DEB5EB100144FE1 /* LeagueDetailsPresenter.swift */; };
 		C5312C982DEB5EB100144FE1 /* ChricketDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5312C862DEB5EB100144FE1 /* ChricketDetailsResponse.swift */; };
@@ -58,18 +57,19 @@
 		C5DEC0C42DEB55AD000A555F /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DEC0C22DEB55AC000A555F /* SportCell.swift */; };
 		C5DEC0C62DEB5646000A555F /* SportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DEC0C32DEB55AC000A555F /* SportCell.xib */; };
 		C5E52C212DEB3511009222B8 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E52C202DEB3511009222B8 /* HomeCollectionViewController.swift */; };
+		F0D14C522DEB651500AE8F24 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F0D14C512DEB651500AE8F24 /* Kingfisher */; };
+		F0E50BB82DEB6851000C21B7 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = F0E50BB72DEB6851000C21B7 /* Reachability */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A2896390FBB9A2A68E12F22 /* Pods_Sportycus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sportycus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6EA7561CF847923C97E4D67C /* Pods-Sportycus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportycus.release.xcconfig"; path = "Target Support Files/Pods-Sportycus/Pods-Sportycus.release.xcconfig"; sourceTree = "<group>"; };
-		9679AD85F2A53A2F1A8244F9 /* Pods-Sportycus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportycus.debug.xcconfig"; path = "Target Support Files/Pods-Sportycus/Pods-Sportycus.debug.xcconfig"; sourceTree = "<group>"; };
+		11BD15B674B3D62060D2AD3F /* Pods-Sportycus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportycus.release.xcconfig"; path = "Target Support Files/Pods-Sportycus/Pods-Sportycus.release.xcconfig"; sourceTree = "<group>"; };
+		344745BCB723426DBF6BEE4A /* Pods-Sportycus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportycus.debug.xcconfig"; path = "Target Support Files/Pods-Sportycus/Pods-Sportycus.debug.xcconfig"; sourceTree = "<group>"; };
+		632F5FCD633D22BDD1EF0344 /* Pods_Sportycus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sportycus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C501CF762DEB3B710015F4D8 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
 		C501CF782DEB3B960015F4D8 /* SportCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportCell.xib; sourceTree = "<group>"; };
 		C501CF792DEB3BC80015F4D8 /* Navigate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigate.swift; sourceTree = "<group>"; };
 		C501CF7A2DEB3BC90015F4D8 /* CellID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellID.swift; sourceTree = "<group>"; };
 		C501CF7B2DEB3BC90015F4D8 /* StoryboardID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardID.swift; sourceTree = "<group>"; };
-		C50BC4542DEB392800714A46 /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomePresenter.swift; path = ../../../../../../Downloads/HomePresenter.swift; sourceTree = "<group>"; };
 		C50BC4582DEB398000714A46 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		C5312C842DEB5EB100144FE1 /* LeagueDetailsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueDetailsPresenter.swift; sourceTree = "<group>"; };
 		C5312C862DEB5EB100144FE1 /* ChricketDetailsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChricketDetailsResponse.swift; sourceTree = "<group>"; };
@@ -120,24 +120,31 @@
 		C5E52C202DEB3511009222B8 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F0E50BB32DEB67AB000C21B7 /* Presenter */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Presenter; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		C5CD0B7A2DE87D6700273B03 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3783B214FFD56D0FE90FA8C4 /* Pods_Sportycus.framework in Frameworks */,
+				F0D14C522DEB651500AE8F24 /* Kingfisher in Frameworks */,
+				F0E50BB82DEB6851000C21B7 /* Reachability in Frameworks */,
+				7F8E90F5944EBFE7E3CAAA98 /* Pods_Sportycus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D8DC928C5B5032242B880EC /* Frameworks */ = {
+		21E5693D57ACD26D19398584 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4A2896390FBB9A2A68E12F22 /* Pods_Sportycus.framework */,
+				344745BCB723426DBF6BEE4A /* Pods-Sportycus.debug.xcconfig */,
+				11BD15B674B3D62060D2AD3F /* Pods-Sportycus.release.xcconfig */,
 			);
-			name = Frameworks;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		C5312C822DEB5EB100144FE1 /* LeagueDetails */ = {
@@ -235,7 +242,7 @@
 		C53F7C7A2DE89016003B4AAE /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				C53F7C7D2DE8902A003B4AAE /* Presenter */,
+				F0E50BB32DEB67AB000C21B7 /* Presenter */,
 				C53F7C7C2DE89024003B4AAE /* View */,
 				C53F7C7B2DE8901F003B4AAE /* Model */,
 			);
@@ -265,14 +272,6 @@
 				C5DEC0C32DEB55AC000A555F /* SportCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		C53F7C7D2DE8902A003B4AAE /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				C50BC4542DEB392800714A46 /* HomePresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		C53F7C7E2DE89198003B4AAE /* Service */ = {
@@ -418,8 +417,8 @@
 			children = (
 				C5CD0B7F2DE87D6700273B03 /* Sportycus */,
 				C5CD0B7E2DE87D6700273B03 /* Products */,
-				CC05763EDF6520B30C083543 /* Pods */,
-				1D8DC928C5B5032242B880EC /* Frameworks */,
+				21E5693D57ACD26D19398584 /* Pods */,
+				EB82BA6E11963B47C187AC36 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -442,13 +441,12 @@
 			path = Sportycus;
 			sourceTree = "<group>";
 		};
-		CC05763EDF6520B30C083543 /* Pods */ = {
+		EB82BA6E11963B47C187AC36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9679AD85F2A53A2F1A8244F9 /* Pods-Sportycus.debug.xcconfig */,
-				6EA7561CF847923C97E4D67C /* Pods-Sportycus.release.xcconfig */,
+				632F5FCD633D22BDD1EF0344 /* Pods_Sportycus.framework */,
 			);
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,15 +456,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5CD0B912DE87D6B00273B03 /* Build configuration list for PBXNativeTarget "Sportycus" */;
 			buildPhases = (
-				AD1D024E8B9467051E276AE2 /* [CP] Check Pods Manifest.lock */,
+				DE4D8768652B8FD33F976B1C /* [CP] Check Pods Manifest.lock */,
 				C5CD0B792DE87D6700273B03 /* Sources */,
 				C5CD0B7A2DE87D6700273B03 /* Frameworks */,
 				C5CD0B7B2DE87D6700273B03 /* Resources */,
-				A5A19195EFC9CF3DB442D392 /* [CP] Embed Pods Frameworks */,
+				39D0D3E3AE10BFA74AFC8318 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F0E50BB32DEB67AB000C21B7 /* Presenter */,
 			);
 			name = Sportycus;
 			productName = Sportycus;
@@ -497,6 +498,10 @@
 				Base,
 			);
 			mainGroup = C5CD0B742DE87D6700273B03;
+			packageReferences = (
+				F0D14C502DEB651500AE8F24 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				F0E50BB62DEB6851000C21B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+			);
 			productRefGroup = C5CD0B7E2DE87D6700273B03 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -531,7 +536,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A5A19195EFC9CF3DB442D392 /* [CP] Embed Pods Frameworks */ = {
+		39D0D3E3AE10BFA74AFC8318 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -539,16 +544,20 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sportycus/Pods-Sportycus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sportycus/Pods-Sportycus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sportycus/Pods-Sportycus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AD1D024E8B9467051E276AE2 /* [CP] Check Pods Manifest.lock */ = {
+		DE4D8768652B8FD33F976B1C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -612,7 +621,6 @@
 				C56F6B492DE9105300FEAC71 /* LeaguePresenter.swift in Sources */,
 				C56F6B402DE90A1D00FEAC71 /* LeagueResponse.swift in Sources */,
 				C501CF7E2DEB3BC90015F4D8 /* StoryboardID.swift in Sources */,
-				C50BC4552DEB392800714A46 /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,7 +754,7 @@
 		};
 		C5CD0B922DE87D6B00273B03 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9679AD85F2A53A2F1A8244F9 /* Pods-Sportycus.debug.xcconfig */;
+			baseConfigurationReference = 344745BCB723426DBF6BEE4A /* Pods-Sportycus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -773,7 +781,7 @@
 		};
 		C5CD0B932DE87D6B00273B03 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EA7561CF847923C97E4D67C /* Pods-Sportycus.release.xcconfig */;
+			baseConfigurationReference = 11BD15B674B3D62060D2AD3F /* Pods-Sportycus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -820,6 +828,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F0D14C502DEB651500AE8F24 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.2;
+			};
+		};
+		F0E50BB62DEB6851000C21B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F0D14C512DEB651500AE8F24 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0D14C502DEB651500AE8F24 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		F0E50BB72DEB6851000C21B7 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0E50BB62DEB6851000C21B7 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			productName = Reachability;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C5CD0B752DE87D6700273B03 /* Project object */;
 }
