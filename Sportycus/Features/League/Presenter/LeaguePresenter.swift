@@ -6,6 +6,7 @@ protocol LeaguePresenterProtocol{
     func getLeaguesCount()->Int
     func getSportType() -> SportType
     func league(at index: Int) -> League
+   
 }
 
 
