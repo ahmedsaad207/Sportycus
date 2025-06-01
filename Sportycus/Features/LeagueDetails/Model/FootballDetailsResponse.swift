@@ -38,4 +38,4 @@ struct FootballFixture :Decodable{
     }
 }
 
-
+extension FootballFixture: DateFilter {}

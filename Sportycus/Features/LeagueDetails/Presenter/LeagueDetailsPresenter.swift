@@ -63,35 +63,44 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
             }
             
              let leagueID = self.league.league_key!
+            print(leagueID)
+            self.getLeagueTeams(leagueId: leagueID, sportName: self.sportType.path)
             
             DispatchQueue.main.async {
-                print(leagueID)
                 switch self.sportType {
                 case .tennis:
                     if let tennisRes = res as? TennisDetailsResponse {
-                        print("------------------------\(tennisRes.result?.first)")
-                        self.view.displayData(data: tennisRes.result ?? [])
+                        
+                        let (old, upcoming) = self.filteredEvents(unFilteredList: tennisRes.result ?? [])
+                        
+                        self.view.displayData(data: (old,upcoming))
                     }
 
                 case .football:
                     if let footballRes = res as? FootballDetailsResponse {
-                        self.view.displayData(data: footballRes.result ?? [])
-                        print("------------------------\(footballRes.result?.first)")
+                        
+                        let (old, upcoming) = self.filteredEvents(unFilteredList: footballRes.result ?? [])
+                        
+                        print(old.count,upcoming.count)
+                        self.view.displayData(data: (old,upcoming))
 
                     }
 
                 case .basketball:
                     if let basketballRes = res as? BasketballDetailsResponse {
-                        self.view.displayData(data: basketballRes.result ?? [])
-                        print("------------------------\(basketballRes.result?.first)")
+                        
+                        let (old, upcoming) = self.filteredEvents(unFilteredList: basketballRes.result ?? [])
+                        
+                        self.view.displayData(data: (old,upcoming))
 
                     }
 
                 case .cricket:
                     if let cricketRes = res as? CricketDetailsResponse {
-                        self.view.displayData(data: cricketRes.result ?? [])
-                        print("------------------------\(cricketRes.result?.first)")
 
+                        let (old, upcoming) = self.filteredEvents(unFilteredList: cricketRes.result ?? [])
+                        
+                        self.view.displayData(data: (old,upcoming))
                     }
                 case .none:
                     print("===none====")
@@ -99,4 +108,40 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
             }
         }
     }
+    
+    private func getLeagueTeams(leagueId: Int, sportName: String){
+        LeagueTeamsService.getTeamsByLeagueId(completion: { teamResponse in
+
+            print("TEAM COUNT \(teamResponse?.result.count)")
+            self.view.displayTeam(team: teamResponse?.result ?? [])
+        }, leagueId: leagueId, sportName: sportName)
+    }
+    
+    
+    private func filteredEvents<T: DateFilter>(unFilteredList: [T]) -> ([T], [T]) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = .current
+
+        let today = Calendar.current.startOfDay(for: Date())
+
+        let oldEvents = unFilteredList.filter { fixture in
+            guard let dateString = fixture.date,
+                  let fixtureDate = dateFormatter.date(from: dateString) else {
+                return false
+            }
+            return fixtureDate < today
+        }
+
+        let upcomingEvents = unFilteredList.filter { fixture in
+            guard let dateString = fixture.date,
+                  let fixtureDate = dateFormatter.date(from: dateString) else {
+                return false
+            }
+            return fixtureDate >= today
+        }
+
+        return (oldEvents, upcomingEvents)
+    }
+
 }

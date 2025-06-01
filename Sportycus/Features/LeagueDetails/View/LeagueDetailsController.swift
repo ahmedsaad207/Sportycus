@@ -9,18 +9,20 @@ import UIKit
 
 
 protocol LeagueDetailsViewProtocol{
-    func displayData<T>(data: [T])
+    func displayData<T>(data: ([T],[T]))
     func onLeagueCheckedIfCached(cached: Bool)
     func getCurrentLeague(league: League)
-
+    func displayTeam(team: [Team])
 }
 
 class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewProtocol {
+
     
-    var footballFixtures: [FootballFixture] = []
-    var basketballFixtures: [BasketballFixture] = []
-    var tennisFixtures: [TennisFixture] = []
-    var cricketFixtures: [CricketFixture] = []
+    var teamList: [Team]?
+    var footballFixtures: ([FootballFixture],[FootballFixture]) = ([],[])
+    var basketballFixtures: ([BasketballFixture] ,[BasketballFixture]) = ([],[])
+    var tennisFixtures: ([TennisFixture],[TennisFixture]) = ([],[])
+    var cricketFixtures: ([CricketFixture],[CricketFixture]) = ([],[])
 
     var currentLeague: League!
     
@@ -28,18 +30,26 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         currentLeague = league
     }
     
-    func displayData<T>(data: [T]) {
-        if let fixtures = data as? [FootballFixture] {
+    func displayData<T>(data: ([T],[T])) {
+        if let fixtures = data as? ([FootballFixture],[FootballFixture]) {
             self.footballFixtures = fixtures
-        } else if let fixtures = data as? [BasketballFixture] {
+        } else if let fixtures = data as? ([BasketballFixture] ,[BasketballFixture]) {
             self.basketballFixtures = fixtures
-        } else if let fixtures = data as? [TennisFixture] {
+        } else if let fixtures = data as? ([TennisFixture],[TennisFixture]) {
             self.tennisFixtures = fixtures
-        } else if let fixtures = data as? [CricketFixture] {
+        } else if let fixtures = data as? ([CricketFixture],[CricketFixture]) {
             self.cricketFixtures = fixtures
         }
+        
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+        }
+    }
+    
+    func displayTeam(team: [Team]) {
+        self.teamList = team
+        DispatchQueue.main.async{
+            self.collectionView.reloadSections(IndexSet(integer: 0))
         }
     }
     
@@ -184,20 +194,30 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch presenter?.getSportType() {
-        case .football:
-            return footballFixtures.count
-        case .basketball:
-            return basketballFixtures.count
-        case .tennis:
-            return tennisFixtures.count
-        case .cricket:
-            return cricketFixtures.count
+
+        switch section {
+        case 0:
+            return self.teamList?.count ?? 0
+        case 1:
+            return self.getSectionCountBasedOnSport(sportType: self.presenter.getSportType()).1
         default:
-            return 0
+            return self.getSectionCountBasedOnSport(sportType: self.presenter.getSportType()).0
         }
     }
 
+    func getSectionCountBasedOnSport(sportType: SportType) -> (Int, Int){
+        switch sportType {
+        case .football:
+            return (footballFixtures.0.count, footballFixtures.1.count)
+        case .basketball:
+            return (basketballFixtures.0.count,basketballFixtures.1.count)
+        case .tennis:
+            return (tennisFixtures.0.count, tennisFixtures.1.count)
+        case .cricket:
+            return (cricketFixtures.0.count, cricketFixtures.1.count)
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
@@ -216,7 +236,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
 
             switch presenter?.getSportType() {
             case .football:
-                let fixture = footballFixtures[indexPath.item]
+                let fixture = footballFixtures.1[indexPath.item]
                 cell.config(
                     time: fixture.time ?? "",
                     date: fixture.date ?? "",
@@ -227,7 +247,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 )
 
             case .basketball:
-                let fixture = basketballFixtures[indexPath.item]
+                let fixture = basketballFixtures.1[indexPath.item]
                 cell.config(
                     time: fixture.time ?? "",
                     date: fixture.date ?? "",
@@ -238,7 +258,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 )
 
             case .tennis:
-                let fixture = tennisFixtures[indexPath.item]
+                let fixture = tennisFixtures.1[indexPath.item]
                 cell.config(
                     time: fixture.time ?? "",
                     date: fixture.date ?? "",
@@ -249,7 +269,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 )
 
             case .cricket:
-                let fixture = cricketFixtures[indexPath.item]
+                let fixture = cricketFixtures.1[indexPath.item]
                 cell.config(
                     time: fixture.time ?? "",
                     date: fixture.dateStart ?? "",
@@ -272,7 +292,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
 
             switch presenter?.getSportType() {
             case .football:
-                let fixture = footballFixtures[indexPath.item]
+                let fixture = footballFixtures.0[indexPath.item]
                 cell.config(
                     homeTeamName: fixture.homeTeam ?? "",
                     awayTeamName: fixture.awayTeam ?? "",
@@ -283,7 +303,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     date: fixture.date ?? ""
                 )
             case .basketball:
-                let fixture = basketballFixtures[indexPath.item]
+                let fixture = basketballFixtures.0[indexPath.item]
                 cell.config(
                     homeTeamName: fixture.homeTeam ?? "",
                     awayTeamName: fixture.awayTeam ?? "",
@@ -294,7 +314,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     date: fixture.date ?? ""
                 )
             case .tennis:
-                let fixture = tennisFixtures[indexPath.item]
+                let fixture = tennisFixtures.0[indexPath.item]
                 cell.config(
                     homeTeamName: fixture.firstPlayer ?? "",
                     awayTeamName: fixture.secondPlayer ?? "",
@@ -305,7 +325,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     date: fixture.date ?? ""
                 )
             case .cricket:
-                let fixture = cricketFixtures[indexPath.item]
+                let fixture = cricketFixtures.0[indexPath.item]
                 cell.config(
                     homeTeamName: fixture.homeTeam ?? "",
                     awayTeamName: fixture.awayTeam ?? "",
@@ -332,6 +352,17 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         collectionView.register(nibTeams, forCellWithReuseIdentifier: CellID.teamCell.rawValue)
     }
     
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let teamStoryBoard = UIStoryboard(name: "Team", bundle: nil)
+            let teamVC = teamStoryBoard.instantiateViewController(identifier: "team") as! TeamController
+            teamVC.teamName = teamList?[indexPath.row].team_name ?? ""
+            teamVC.sportName = self.presenter.getSportType().path
+            teamVC.leagueId = self.currentLeague.league_key
+            self.navigationController?.pushViewController(teamVC, animated: true)
+        }
+    }
 
 
         @objc func heartButtonTapped() {

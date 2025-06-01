@@ -39,3 +39,5 @@ struct TennisFixture: Decodable {
         case secondPlayerLogo = "event_second_player_logo"
     }
 }
+
+extension TennisFixture: DateFilter {}

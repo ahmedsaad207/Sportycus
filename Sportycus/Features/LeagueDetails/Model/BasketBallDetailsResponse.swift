@@ -35,3 +35,5 @@ struct BasketballFixture : Decodable {
             case awayTeamLogo = "event_away_team_logo"
     }
 }
+
+extension BasketballFixture: DateFilter {}

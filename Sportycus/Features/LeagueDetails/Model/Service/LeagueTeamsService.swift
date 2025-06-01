@@ -1,11 +1,11 @@
 import Foundation
 
 protocol LeagueTeamsProtocol {
-    func getTeamsByLeagueId(completion: @escaping (TeamResponse?) -> Void, leagueId: Int, sportName: String)
+   static func getTeamsByLeagueId(completion: @escaping (TeamResponse?) -> Void, leagueId: Int, sportName: String)
 }
 
 class LeagueTeamsService : LeagueTeamsProtocol{
-    func getTeamsByLeagueId(completion: @escaping (TeamResponse?) -> Void, leagueId: Int, sportName: String) {
+    static func getTeamsByLeagueId(completion: @escaping (TeamResponse?) -> Void, leagueId: Int, sportName: String) {
         let APIkey = "586f22d0c8d25e87a307eb2b356adf784613495adeb6e3f00403fd33c481b2d2"
         let baseUrl = "https://apiv2.allsportsapi.com/"
         let url = "\(baseUrl)\(sportName)?met=Teams&APIkey=\(APIkey)&leagueId=\(leagueId)"

@@ -40,3 +40,9 @@ struct CricketFixture: Decodable {
         case awayTeamLogo = "event_away_team_logo"
     }
 }
+
+extension CricketFixture: DateFilter {
+    var date: String? {
+        return dateStart
+    }
+}
