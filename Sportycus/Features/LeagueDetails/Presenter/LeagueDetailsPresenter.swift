@@ -12,6 +12,7 @@ protocol LeagueDetailsPresenterProtocol {
 //    func getLeagueByKey() -> League
     func addLeague(league: League)
     func deleteLeague(key: Int)
+    func getSportType()->SportType
 }
 
 class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
@@ -19,9 +20,7 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
     var view: LeagueDetailsViewProtocol!
     var sportType: SportType!
     var leagueID: Int!
-    
-    private var list: [ResponseProtocol]!
-    
+        
     init(view: LeagueDetailsViewProtocol!, sportType: SportType, leagueID: Int) {
         self.sportType = sportType
         self.view = view
@@ -43,6 +42,9 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
 //        local.deleteLeague(key: key)
     }
     
+    func getSportType()->SportType {
+        return self.sportType
+    }
     
     func getLeagueDetails() {
         LeagueDetailsService.getLeagueDetails(for: sportType, leagueID: leagueID) { res in

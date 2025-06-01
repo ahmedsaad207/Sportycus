@@ -14,9 +14,28 @@ protocol LeagueDetailsViewProtocol{
 
 class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewProtocol {
     
+    var footballFixtures: [FootballFixture] = []
+    var basketballFixtures: [BasketballFixture] = []
+    var tennisFixtures: [TennisFixture] = []
+    var cricketFixtures: [CricketFixture] = []
+
+    
     func displayData<T>(data: [T]) {
+        if let fixtures = data as? [FootballFixture] {
+            self.footballFixtures = fixtures
+        } else if let fixtures = data as? [BasketballFixture] {
+            self.basketballFixtures = fixtures
+        } else if let fixtures = data as? [TennisFixture] {
+            self.tennisFixtures = fixtures
+        } else if let fixtures = data as? [CricketFixture] {
+            self.cricketFixtures = fixtures
+        }
         
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
+
     
     var isFavorite: Bool!
 
@@ -152,38 +171,139 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         return 3
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            //teams
-            return 5
-        case 1:
-            //upcoming
-            return 5
+        switch presenter?.getSportType() {
+        case .football:
+            return footballFixtures.count
+        case .basketball:
+            return basketballFixtures.count
+        case .tennis:
+            return tennisFixtures.count
+        case .cricket:
+            return cricketFixtures.count
         default:
-            //latest
-           return 5
+            return 0
         }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.teamCell.rawValue, for: indexPath) as! TeamsCell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CellID.teamCell.rawValue,
+                for: indexPath
+            ) as! TeamsCell
             cell.config(teamName: "team name", teamImg: "")
             return cell
+
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.upcomingEventCell.rawValue, for: indexPath)as! UpcomingEventsCell
-            cell.config(time: "time", date: "date", homeName: "home name", awayName: "away name", awayTeamImg: "", homeTeamImg: "")
-            
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CellID.upcomingEventCell.rawValue,
+                for: indexPath
+            ) as! UpcomingEventsCell
+
+            switch presenter?.getSportType() {
+            case .football:
+                let fixture = footballFixtures[indexPath.item]
+                cell.config(
+                    time: fixture.time ?? "",
+                    date: fixture.date ?? "",
+                    homeName: fixture.homeTeam ?? "",
+                    awayName: fixture.awayTeam ?? "",
+                    awayTeamImg: fixture.awayTeamLogo ?? "",
+                    homeTeamImg: fixture.homeTeamLogo ?? ""
+                )
+
+            case .basketball:
+                let fixture = basketballFixtures[indexPath.item]
+                cell.config(
+                    time: fixture.time ?? "",
+                    date: fixture.date ?? "",
+                    homeName: fixture.homeTeam ?? "",
+                    awayName: fixture.awayTeam ?? "",
+                    awayTeamImg: fixture.awayTeamLogo ?? "",
+                    homeTeamImg: fixture.homeTeamLogo ?? ""
+                )
+
+            case .tennis:
+                let fixture = tennisFixtures[indexPath.item]
+                cell.config(
+                    time: fixture.time ?? "",
+                    date: fixture.date ?? "",
+                    homeName: fixture.firstPlayer ?? "",
+                    awayName: fixture.secondPlayer ?? "",
+                    awayTeamImg: fixture.secondPlayerLogo ?? "",
+                    homeTeamImg: fixture.firstPlayerLogo ?? ""
+                )
+
+            case .cricket:
+                let fixture = cricketFixtures[indexPath.item]
+                cell.config(time: fixture.time ?? "", date: fixture.dateStart ?? "", homeName: fixture.homeTeam ?? "", awayName: fixture.awayTeam ?? "", awayTeamImg: fixture.awayTeamLogo ?? "", homeTeamImg: fixture.homeTeamLogo ?? "")
+
+            default:
+                break
+            }
             return cell
+
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.latestEventCell.rawValue, for: indexPath) as! LatestEventsCell
-            cell.config(homeTeamName: "home name", awayTeamName: "away name", homeTeamImg: "", awayTeamImg: "", score: "2-2", time: "20:30", date: "05.25.2025")
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CellID.latestEventCell.rawValue,
+                for: indexPath
+            ) as! LatestEventsCell
+
+            switch presenter?.getSportType() {
+            case .football:
+                let fixture = footballFixtures[indexPath.item]
+                cell.config(
+                    homeTeamName: fixture.homeTeam ?? "",
+                    awayTeamName: fixture.awayTeam ?? "",
+                    homeTeamImg: fixture.homeTeamLogo ?? "",
+                    awayTeamImg: fixture.awayTeamLogo ?? "",
+                    score: fixture.finalResult ?? "-",
+                    time: fixture.time ?? "",
+                    date: fixture.date ?? ""
+                )
+            case .basketball:
+                let fixture = basketballFixtures[indexPath.item]
+                cell.config(
+                    homeTeamName: fixture.homeTeam ?? "",
+                    awayTeamName: fixture.awayTeam ?? "",
+                    homeTeamImg: fixture.homeTeamLogo ?? "",
+                    awayTeamImg: fixture.awayTeamLogo ?? "",
+                    score: fixture.finalResult ?? "-",
+                    time: fixture.time ?? "",
+                    date: fixture.date ?? ""
+                )
+            case .tennis:
+                let fixture = tennisFixtures[indexPath.item]
+                cell.config(
+                    homeTeamName: fixture.firstPlayer ?? "",
+                    awayTeamName: fixture.secondPlayer ?? "",
+                    homeTeamImg: fixture.firstPlayerLogo ?? "",
+                    awayTeamImg: fixture.secondPlayerLogo ?? "",
+                    score: fixture.finalResult ?? "-",
+                    time: fixture.time ?? "",
+                    date: fixture.date ?? ""
+                )
+            case .cricket:
+                let fixture = cricketFixtures[indexPath.item]
+                cell.config(
+                    homeTeamName: fixture.homeTeam ?? "",
+                    awayTeamName: fixture.awayTeam ?? "",
+                    homeTeamImg: fixture.homeTeamLogo ?? "",
+                    awayTeamImg: fixture.awayTeamLogo ?? "",
+                    score: fixture.status ?? "",
+                    time: fixture.time ?? "",
+                    date: fixture.dateStart ?? "",
+                )
+            default:
+                break
+            }
+
             return cell
         }
     }
+
 
     func registerNibs(){
         let nibUpcomingEvents = UINib(nibName: CellID.upcomingEventCell.rawValue, bundle: nil)
