@@ -29,8 +29,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8M6-30-ZRZ">
-                        <rect key="frame" x="16" y="17.666666666666664" width="64" height="60.999999999999993"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8M6-30-ZRZ">
+                        <rect key="frame" x="16" y="16" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="PF6-zE-k1D"/>
                             <constraint firstAttribute="height" constant="64" id="ftf-aa-Zng"/>
@@ -58,7 +58,4 @@
             <point key="canvasLocation" x="244.27480916030532" y="4.2253521126760569"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="photo" catalog="system" width="128" height="93"/>
-    </resources>
 </document>

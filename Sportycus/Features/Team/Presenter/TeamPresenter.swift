@@ -1,7 +1,7 @@
 import Foundation
 
 protocol TeamPresenterProtocol {
-    func getTeam(sport: String, teamName: String, leagueId: Int)
+    func getTeam(sport: String, teamKey: Int, leagueId: Int)
 }
 
 class TeamPresenter : TeamPresenterProtocol{
@@ -11,11 +11,11 @@ class TeamPresenter : TeamPresenterProtocol{
         self.vc = vc
     }
     
-    func getTeam(sport: String, teamName: String, leagueId: Int) {
+    func getTeam(sport: String, teamKey: Int, leagueId: Int) {
         TeamService().getTeam(completion: { response in
             if let response = response {
                 self.vc.renderToView(response: response)
             }
-        }, sport: sport, teamName: teamName, leagueId: leagueId)
+        }, sport: sport, teamKey: teamKey, leagueId: leagueId)
     }
 }

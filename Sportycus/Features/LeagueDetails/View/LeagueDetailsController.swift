@@ -335,7 +335,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     awayTeamImg: fixture.awayTeamLogo ?? "",
                     score: fixture.status ?? "",
                     time: fixture.time ?? "",
-                    date: fixture.dateStart ?? "",
+                    date: fixture.dateStart ?? ""
                 )
             default:
                 break
@@ -359,7 +359,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         if indexPath.section == 0 {
             let teamStoryBoard = UIStoryboard(name: "Team", bundle: nil)
             let teamVC = teamStoryBoard.instantiateViewController(identifier: "team") as! TeamController
-            teamVC.teamName = teamList?[indexPath.row].team_name ?? ""
+            teamVC.teamKey = teamList?[indexPath.row].team_key ?? 0
             teamVC.sportName = self.presenter.getSportType().path
             teamVC.leagueId = self.currentLeague.league_key
             self.navigationController?.pushViewController(teamVC, animated: true)
