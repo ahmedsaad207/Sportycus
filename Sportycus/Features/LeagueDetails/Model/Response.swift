@@ -7,4 +7,4 @@
 
 import Foundation
 
-protocol ResponseProtocol{}
+protocol ResponseProtocol : Decodable{}

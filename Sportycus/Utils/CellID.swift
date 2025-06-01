@@ -7,11 +7,12 @@
 
 import Foundation
 
-enum CellID: String, CustomStringConvertible {
+enum CellID: String {
     case home
     case details
-
-    var description: String {
-        return self.rawValue
-    }
+    
+    case upcomingEventCell = "UpcomingEventsCell"
+    case latestEventCell = "LatestEventsCell"
+    case teamCell = "TeamsCell"
+    case sectionHeader = "Header"
 }

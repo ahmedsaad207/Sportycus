@@ -11,8 +11,9 @@ private let sportCellIdentifier = "SportCell"
 
 
 protocol HomeViewProtocol {
-    func navigateToLeague(sport: String)
+    func navigateToLeague(sport: SportType)
 }
+
 
 
 class HomeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomeViewProtocol {
@@ -66,10 +67,11 @@ class HomeCollectionViewController: UICollectionViewController, UICollectionView
         presenter.didSelectSport(at: indexPath.row)
     }
     
-    func navigateToLeague(sport: String) {
-        let leaguestoryboard = UIStoryboard(name: StoryboardID.league.name, bundle: nil)
-        let leagueVC = leaguestoryboard.instantiateViewController(identifier: StoryboardID.league.identifier) as! LeagueTableViewController
-        leagueVC.presenter = LeaguePresenter(vc: leagueVC , sportName: sport)
+    func navigateToLeague(sport: SportType) {
+        let leagueStoryboard = UIStoryboard(name: StoryboardID.league.name, bundle: nil)
+        let leagueVC = leagueStoryboard.instantiateViewController(identifier: StoryboardID.league.identifier) as! LeagueTableViewController
+        leagueVC.presenter = LeaguePresenter(vc: leagueVC, sportType: sport)
         self.navigationController!.pushViewController(leagueVC, animated: true)
     }
+
 }
