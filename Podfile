@@ -3,8 +3,7 @@ platform :ios, '14.0'
 target 'Sportycus' do
   use_frameworks!
  
-  pod 'Kingfisher', '~> 7.0'
-  pod 'ReachabilitySwift'
+  pod 'Kingfisher', '7.12'
  
   post_install do |installer|
     installer.pods_project.targets.each do |target|

@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  Sportycus
-//
-//  Created by Ahmed Saad on 29/05/2025.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -28,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyBoardFavorite = UIStoryboard(name: "Favorite", bundle: nil)
         let favoriteVC = storyBoardFavorite.instantiateViewController(withIdentifier: "favorite")
         let navFovrite = UINavigationController(rootViewController: favoriteVC)
-        navFovrite.tabBarItem = UITabBarItem(title: "Sports", image: UIImage(systemName: "heart.fill"), tag: 0)
+        navFovrite.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), tag: 0)
         
         // tab bar controller
         let tabBarController = UITabBarController()
