@@ -225,7 +225,9 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 withReuseIdentifier: CellID.teamCell.rawValue,
                 for: indexPath
             ) as! TeamsCell
-            cell.config(teamName: "team name", teamImg: "")
+            
+            let team = teamList?[indexPath.row]
+            cell.config(teamName: team?.team_name ?? "", teamImg: team?.team_logo ?? "")
             return cell
 
         case 1:
