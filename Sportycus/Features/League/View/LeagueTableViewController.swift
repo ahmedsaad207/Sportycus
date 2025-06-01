@@ -15,10 +15,14 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
         tableView.register(nib, forCellReuseIdentifier: "leagueCell")
     }
     
+    func setupAppbar(){
+        self.navigationItem.title = presenter.getSportType().rawValue
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNibs()
-        
+        setupAppbar()
         presenter.getLeagues()
         
         networkIndicator = UIActivityIndicatorView()
@@ -56,10 +60,10 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let leagueID = presenter.league(at: indexPath.row).league_key
+        let league = presenter.league(at: indexPath.row)
         let storyBoardLeagueDetails = UIStoryboard(name: "LeagueDetails", bundle: nil)
         let leagueDetailsVC = storyBoardLeagueDetails.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsController
-        leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: presenter.getSportType(), leagueID: leagueID ?? 0)
+        leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: presenter.getSportType(), league: league)
         navigationController?.pushViewController(leagueDetailsVC, animated: true)
     }
 }

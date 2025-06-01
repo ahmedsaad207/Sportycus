@@ -9,52 +9,63 @@ import Foundation
 
 protocol LeagueDetailsPresenterProtocol {
     func getLeagueDetails()
-//    func getLeagueByKey() -> League
+    func getLeague()
     func addLeague(league: League)
     func deleteLeague(key: Int)
     func getSportType()->SportType
+    func isLeagueExist(leagueKey: Int)
 }
 
 class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
+
+    
+
     
     var view: LeagueDetailsViewProtocol!
     var sportType: SportType!
-    var leagueID: Int!
+    var league: League!
         
-    init(view: LeagueDetailsViewProtocol!, sportType: SportType, leagueID: Int) {
+    init(view: LeagueDetailsViewProtocol!, sportType: SportType, league:League) {
         self.sportType = sportType
         self.view = view
-        self.leagueID = leagueID
+        self.league = league
+        getLeague()
     }
     
-//    let local = LeagueLocalDataSource()
-
-
-//    func getLeagueByKey() -> League {
-//        local.getLeagueByKey()
-//    }
+    let local = LeagueLocalDataSource()
+    
+    func isLeagueExist(leagueKey: Int) {
+        view.onLeagueCheckedIfCached(cached: local.isLeagueExist(leagueKey: leagueKey))
+    }
     
     func addLeague(league: League) {
-//        local.addLeague(league: league)
+        local.addLeague(league: league)
     }
     
     func deleteLeague(key: Int) {
-//        local.deleteLeague(key: key)
+        local.deleteLeague(key: key)
     }
     
     func getSportType()->SportType {
         return self.sportType
     }
     
+    func getLeague(){
+        view.getCurrentLeague(league: league)
+    }
+    
+    
     func getLeagueDetails() {
-        LeagueDetailsService.getLeagueDetails(for: sportType, leagueID: leagueID) { res in
+        LeagueDetailsService.getLeagueDetails(for: sportType, leagueID: league.league_key!) { res in
             guard let res = res else {
                 print("Failed to get data")
                 return
             }
-
+            
+             let leagueID = self.league.league_key!
+            
             DispatchQueue.main.async {
-                print(self.leagueID)
+                print(leagueID)
                 switch self.sportType {
                 case .tennis:
                     if let tennisRes = res as? TennisDetailsResponse {

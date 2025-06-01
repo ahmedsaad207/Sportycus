@@ -10,6 +10,9 @@ import UIKit
 
 protocol LeagueDetailsViewProtocol{
     func displayData<T>(data: [T])
+    func onLeagueCheckedIfCached(cached: Bool)
+    func getCurrentLeague(league: League)
+
 }
 
 class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewProtocol {
@@ -19,6 +22,11 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     var tennisFixtures: [TennisFixture] = []
     var cricketFixtures: [CricketFixture] = []
 
+    var currentLeague: League!
+    
+    func getCurrentLeague(league: League) {
+        currentLeague = league
+    }
     
     func displayData<T>(data: [T]) {
         if let fixtures = data as? [FootballFixture] {
@@ -30,11 +38,15 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         } else if let fixtures = data as? [CricketFixture] {
             self.cricketFixtures = fixtures
         }
-        
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
+    
+    func onLeagueCheckedIfCached(cached: Bool) {
+          isFavorite = cached
+          setupAppBar()
+      }
 
     
     var isFavorite: Bool!
@@ -42,23 +54,26 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     var presenter: LeagueDetailsPresenterProtocol!
     
     func setupAppBar(){
-        let heartImage = UIImage(systemName: "heart")
-            let heartButton = UIBarButtonItem(
-                image: heartImage,
-                style: .plain,
-                target: self,
-                action: #selector(heartButtonTapped)
-            )
-            navigationItem.rightBarButtonItem = heartButton
-    }
+        self.navigationItem.title = self.currentLeague.league_name
+        
+            let systemImage =  isFavorite ? "heart.fill" : "heart"
+
+                let heartButton = UIBarButtonItem(
+                    image: UIImage(systemName: systemImage),
+                    style: .plain,
+                    target: self,
+                    action: #selector(heartButtonTapped)
+                )
+                navigationItem.rightBarButtonItem = heartButton
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAppBar()
         setLayout()
         registerNibs()
         presenter.getLeagueDetails()
-        isFavorite = false
+        presenter.isLeagueExist(leagueKey: currentLeague.league_key!)
+
     }
     
     func setLayout(){
@@ -125,11 +140,10 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     func latestSection () -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .absolute(225))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(225))
        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
        , subitems: [item])
-           group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-           , bottom: 0, trailing: 15)
+           group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
            
        let section = NSCollectionLayoutSection(group: group)
            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
@@ -141,7 +155,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
             alignment: .top
         )
         section.boundarySupplementaryItems = [sectionHeader]
-        
         return section
     }
     
@@ -166,7 +179,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         return UICollectionReusableView()
     }
 
-   
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
@@ -238,7 +250,14 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
 
             case .cricket:
                 let fixture = cricketFixtures[indexPath.item]
-                cell.config(time: fixture.time ?? "", date: fixture.dateStart ?? "", homeName: fixture.homeTeam ?? "", awayName: fixture.awayTeam ?? "", awayTeamImg: fixture.awayTeamLogo ?? "", homeTeamImg: fixture.homeTeamLogo ?? "")
+                cell.config(
+                    time: fixture.time ?? "",
+                    date: fixture.dateStart ?? "",
+                    homeName: fixture.homeTeam ?? "",
+                    awayName: fixture.awayTeam ?? "",
+                    awayTeamImg: fixture.awayTeamLogo ?? "",
+                    homeTeamImg: fixture.homeTeamLogo ?? ""
+                )
 
             default:
                 break
@@ -299,7 +318,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
             default:
                 break
             }
-
             return cell
         }
     }
@@ -314,31 +332,33 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         collectionView.register(nibTeams, forCellWithReuseIdentifier: CellID.teamCell.rawValue)
     }
     
-    @objc func heartButtonTapped() {
-        if isFavorite {
-            showDeleteAlert()
-        } else {
-            presenter.addLeague(league: League())
-            toggle()
+
+
+        @objc func heartButtonTapped() {
+            if isFavorite {
+                showDeleteAlert()
+            } else {
+                let league = League(league_key: self.currentLeague.league_key!, league_name: self.currentLeague.league_name!, league_logo: self.currentLeague.league_logo)
+                presenter.addLeague(league: league)
+                toggle()
+            }
         }
         
-    }
-    
-    func showDeleteAlert() {
-//        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-//        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-//            LeagueDetailsPresenter(view: nil).deleteLeague(key: 4)
-//            self.toggle()
-//        }))
-//        present(alert, animated: true)
-    }
-                                               
-    func toggle() {
-        let systemImage =  isFavorite ? "heart" : "heart.fill"
-        navigationItem.rightBarButtonItem!.image = UIImage(systemName: systemImage)
-        isFavorite.toggle()
-    }
+        func showDeleteAlert() {
+            let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                self.presenter.deleteLeague(key: Int(self.currentLeague.league_key!))
+                self.toggle()
+            }))
+            present(alert, animated: true)
+        }
+                                                   
+        func toggle() {
+            let systemImage =  isFavorite ? "heart" : "heart.fill"
+            navigationItem.rightBarButtonItem!.image = UIImage(systemName: systemImage)
+            isFavorite.toggle()
+        }
 }
 
 
