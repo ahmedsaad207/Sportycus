@@ -12,7 +12,7 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Favorites Leagues"
+        navigationItem.title = "Favorites Leagues"
         presenter = FavoritePresenter(vc: self)
         registerNibs()
         presenter.getLeagues()
@@ -45,6 +45,7 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LeagueCell", for: indexPath) as! LeagueCell
         let league = leagues[indexPath.row]
         cell.leagueName.text = league.leagueName
+        cell.leagueCountry.text = league.leagueName
         cell.leagueLogo.kf.setImage(with: URL(string: league.leagueLogo ?? ""), placeholder: UIImage(systemName: "photo"))
         return cell
     }
@@ -70,7 +71,8 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             self.presenter.deleteLeague(key: Int(self.leagues[indexPath.row].leagueKey))
-
+            self.leagues.remove(at: indexPath.row)
+            self.collectionView.reloadData()
         }))
         present(alert, animated: true)
     }

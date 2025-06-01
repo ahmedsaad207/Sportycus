@@ -9,7 +9,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
 //    var loadingView = LoadingIndicatorView()
     var leagueId: Int!
     var sportName: String!
-    var teamName: String!
+    var teamKey: Int!
     
 
     override func viewDidLoad() {
@@ -17,8 +17,6 @@ class TeamController: UITableViewController, TeamViewProtocol {
 //        loadingView.show(in:view)
         
         title = "Team Info"
-        let favButton = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(onFavoriteButtonClick))
-        navigationItem.rightBarButtonItem = favButton
         
         // register nib cell
         let nibTeam = UINib(nibName: "TeamInfoCell", bundle: nil)
@@ -27,7 +25,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
         let nibPlayer = UINib(nibName: "PlayerCell", bundle: nil)
         tableView.register(nibPlayer, forCellReuseIdentifier: "playerCell")
 
-        TeamPresenter(vc: self).getTeam(sport: sportName,teamName: teamName, leagueId: leagueId)
+        TeamPresenter(vc: self).getTeam(sport: sportName,teamKey: teamKey, leagueId: leagueId)
     }
     
     func renderToView(response: TeamResponse) {
