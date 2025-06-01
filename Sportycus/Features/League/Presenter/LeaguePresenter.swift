@@ -4,22 +4,24 @@ import Foundation
 protocol LeaguePresenterProtocol{
     func getLeagues()
     func getLeaguesCount()->Int
-    
+    func getSportType() -> SportType
     func league(at index: Int) -> League
 }
 
 
 class LeaguePresenter: LeaguePresenterProtocol {
     
+    
+    
     var vc:LeagueViewProtocol?
     
-     var leagues: [League] = []
-
-    var sportName: String!
+    var leagues: [League] = []
     
-    init(vc: LeagueViewProtocol, sportName: String) {
+    private var sportType: SportType!
+    
+    init(vc: LeagueViewProtocol, sportType: SportType) {
         self.vc = vc
-        self.sportName = sportName
+        self.sportType = sportType
     }
     
     func getLeaguesCount() -> Int {
@@ -27,7 +29,11 @@ class LeaguePresenter: LeaguePresenterProtocol {
     }
     
     func league(at index: Int) -> League {
-      return leagues[index]
+        return leagues[index]
+    }
+    
+    func getSportType() -> SportType {
+        return sportType
     }
     
     func getLeagues() {
@@ -36,6 +42,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
                 self.leagues = response.result
                 self.vc!.renderToView(data: response.result)
             }
-        }, sport: sportName)
+        }, sport: sportType.path)
     }
 }
+

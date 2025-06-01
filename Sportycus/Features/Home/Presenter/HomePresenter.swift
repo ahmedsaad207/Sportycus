@@ -19,10 +19,10 @@ class HomePresenter: HomePresenterProtocol {
     private var view: HomeViewProtocol?
     
     private let sports: [Sport] = [
-        Sport(sportTitle: "Football", sportImage: "football"),
-        Sport(sportTitle: "Basketball", sportImage: "basketball"),
-        Sport(sportTitle: "Tennis", sportImage: "tennis"),
-        Sport(sportTitle: "Cricket", sportImage: "cricket")
+        Sport(sportTitle: SportType.football.rawValue, sportImage: "football"),
+        Sport(sportTitle: SportType.basketball.rawValue, sportImage: "basketball"),
+        Sport(sportTitle: SportType.tennis.rawValue, sportImage: "tennis"),
+        Sport(sportTitle: SportType.cricket.rawValue, sportImage: "cricket")
     ]
     
     init(view: HomeViewProtocol) {
@@ -38,6 +38,9 @@ class HomePresenter: HomePresenterProtocol {
     }
 
     func didSelectSport(at index: Int) {
-        view?.navigateToLeague(sport: sports[index].sportTitle.lowercased())
+        guard let sType = SportType(rawValue: sports[index].sportTitle) else {return}
+        view?.navigateToLeague(sport: sType)
     }
+    
+    
 }

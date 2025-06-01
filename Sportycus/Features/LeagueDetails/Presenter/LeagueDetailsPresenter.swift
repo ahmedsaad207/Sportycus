@@ -8,27 +8,82 @@
 import Foundation
 
 protocol LeagueDetailsPresenterProtocol {
-    func getLeagueDetails(sport: String, leagueID: String)
+    func getLeagueDetails()
+//    func getLeagueByKey() -> League
+    func addLeague(league: League)
+    func deleteLeague(key: Int)
 }
 
 class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
     
     var view: LeagueDetailsViewProtocol!
+    var sportType: SportType!
+    var leagueID: Int!
     
     private var list: [ResponseProtocol]!
     
-    init(view: LeagueDetailsViewProtocol!) {
+    init(view: LeagueDetailsViewProtocol!, sportType: SportType, leagueID: Int) {
+        self.sportType = sportType
         self.view = view
+        self.leagueID = leagueID
     }
     
-    func getLeagueDetails(sport: String, leagueID: String) {
-        LeagueDetailsService.getLeagueDetails(completion: { data in
+//    let local = LeagueLocalDataSource()
 
-            
-        }, sport: sport, leagueID: leagueID)
+
+//    func getLeagueByKey() -> League {
+//        local.getLeagueByKey()
+//    }
+    
+    func addLeague(league: League) {
+//        local.addLeague(league: league)
+    }
+    
+    func deleteLeague(key: Int) {
+//        local.deleteLeague(key: key)
     }
     
     
-    
-    
+    func getLeagueDetails() {
+        LeagueDetailsService.getLeagueDetails(for: sportType, leagueID: leagueID) { res in
+            guard let res = res else {
+                print("Failed to get data")
+                return
+            }
+
+            DispatchQueue.main.async {
+                print(self.leagueID)
+                switch self.sportType {
+                case .tennis:
+                    if let tennisRes = res as? TennisDetailsResponse {
+                        print("------------------------\(tennisRes.result?.first)")
+                        self.view.displayData(data: tennisRes.result ?? [])
+                    }
+
+                case .football:
+                    if let footballRes = res as? FootballDetailsResponse {
+                        self.view.displayData(data: footballRes.result ?? [])
+                        print("------------------------\(footballRes.result?.first)")
+
+                    }
+
+                case .basketball:
+                    if let basketballRes = res as? BasketballDetailsResponse {
+                        self.view.displayData(data: basketballRes.result ?? [])
+                        print("------------------------\(basketballRes.result?.first)")
+
+                    }
+
+                case .cricket:
+                    if let cricketRes = res as? CricketDetailsResponse {
+                        self.view.displayData(data: cricketRes.result ?? [])
+                        print("------------------------\(cricketRes.result?.first)")
+
+                    }
+                case .none:
+                    print("===none====")
+                }
+            }
+        }
+    }
 }
