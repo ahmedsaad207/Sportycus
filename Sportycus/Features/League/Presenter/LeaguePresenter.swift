@@ -6,10 +6,13 @@ protocol LeaguePresenterProtocol{
     func getLeaguesCount()->Int
     
     func league(at index: Int) -> League
+   
 }
 
 
 class LeaguePresenter: LeaguePresenterProtocol {
+    
+    
     
     var vc:LeagueViewProtocol?
     

@@ -1,85 +1,86 @@
-//
-//  FavoriteCollectionViewController.swift
-//  Sportycus
-//
-//  Created by Ahmed Saad on 29/05/2025.
-//
-
 import UIKit
 
-private let reuseIdentifier = "Cell"
+protocol FavoriteViewProtocol {
+    func renderToView(data: [FavoriteLeague])
+}
 
-class FavoriteController: UICollectionViewController {
+class FavoriteController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FavoriteViewProtocol {
+    
+    
+    var presenter: FavoritePresenterProtocol!
+    var leagues: [FavoriteLeague] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        title = "Favorites Leagues"
+        presenter = FavoritePresenter(vc: self)
+        registerNibs()
+        presenter.getLeagues()
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        collectionView.addGestureRecognizer(longPressGesture)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("favoriteVC")
+    func renderToView(data: [FavoriteLeague]) {
+        leagues = data
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    func registerNibs() {
+        let nib = UINib(nibName: "LeagueCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "LeagueCell")
     }
-    */
-
-    // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return leagues.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LeagueCell", for: indexPath) as! LeagueCell
+        let league = leagues[indexPath.row]
+        cell.leagueName.text = league.leagueName
+        cell.leagueLogo.kf.setImage(with: URL(string: league.leagueLogo ?? ""), placeholder: UIImage(systemName: "photo"))
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 96)
     }
-    */
+    
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state != .began { return }
+
+        let point = gesture.location(in: collectionView)
+
+        guard let indexPath = collectionView.indexPathForItem(at: point) else { return }
+
+        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            self.presenter.deleteLeague(key: Int(self.leagues[indexPath.row].leagueKey))
+
+        }))
+        present(alert, animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        presenter.getLeagues()
+        collectionView.reloadData()
+    }
+
+    
+    
 
 }
