@@ -21,28 +21,28 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cs6-Ly-BnD">
                         <rect key="frame" x="0.0" y="0.0" width="429" height="225"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6dM-LM-d31">
-                                <rect key="frame" x="311" y="8" width="110" height="110"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6dM-LM-d31">
+                                <rect key="frame" x="281" y="8" width="140" height="110"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="9VM-XE-FWB"/>
+                                    <constraint firstAttribute="width" constant="140" id="9VM-XE-FWB"/>
                                     <constraint firstAttribute="height" constant="110" id="VMC-NA-WSr"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MlJ-O9-XkD">
-                                <rect key="frame" x="8" y="8" width="110" height="110"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MlJ-O9-XkD">
+                                <rect key="frame" x="8" y="8" width="140" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="8vI-Wi-1Ma"/>
-                                    <constraint firstAttribute="width" constant="110" id="fL4-31-eOE"/>
+                                    <constraint firstAttribute="width" constant="140" id="fL4-31-eOE"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAg-L7-XUQ">
-                                <rect key="frame" x="311" y="126" width="110" height="21"/>
+                                <rect key="frame" x="281" y="126" width="140" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiC-Vk-xVG">
-                                <rect key="frame" x="8" y="126" width="110" height="21"/>
+                                <rect key="frame" x="8" y="126" width="140" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

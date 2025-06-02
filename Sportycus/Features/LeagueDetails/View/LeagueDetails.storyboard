@@ -38,14 +38,14 @@
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FY9-If-6wq">
-                                    <rect key="frame" x="24" y="8" width="345" height="34"/>
+                                    <rect key="frame" x="8" y="8" width="361" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="FY9-If-6wq" firstAttribute="leading" secondItem="YM9-29-nVH" secondAttribute="leadingMargin" constant="16" id="7Ez-4h-LME"/>
+                                <constraint firstItem="FY9-If-6wq" firstAttribute="leading" secondItem="YM9-29-nVH" secondAttribute="leadingMargin" id="7Ez-4h-LME"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="FY9-If-6wq" secondAttribute="trailing" constant="16" id="G6f-1V-9Zl"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="FY9-If-6wq" secondAttribute="bottom" id="b6f-L2-fq3"/>
                                 <constraint firstItem="FY9-If-6wq" firstAttribute="top" secondItem="YM9-29-nVH" secondAttribute="topMargin" id="hSv-Ov-6kB"/>

@@ -30,23 +30,23 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemCyanColor"/>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AKN-Bc-zI1">
-                        <rect key="frame" x="16" y="137" width="80" height="80"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AKN-Bc-zI1">
+                        <rect key="frame" x="16" y="137" width="110" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="IF7-D7-p1v"/>
-                            <constraint firstAttribute="width" constant="80" id="qWt-3J-20g"/>
+                            <constraint firstAttribute="width" constant="110" id="qWt-3J-20g"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajd-lk-AgT">
-                        <rect key="frame" x="307" y="112" width="80" height="21"/>
+                        <rect key="frame" x="277" y="112" width="110" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXb-KX-F7V">
-                        <rect key="frame" x="307" y="16" width="80" height="80"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXb-KX-F7V">
+                        <rect key="frame" x="277" y="16" width="110" height="80"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="2Hr-lj-9eu"/>
+                            <constraint firstAttribute="width" constant="110" id="2Hr-lj-9eu"/>
                             <constraint firstAttribute="height" constant="80" id="HBj-zc-yqF"/>
                         </constraints>
                     </imageView>
@@ -57,7 +57,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtP-ys-EFr">
-                        <rect key="frame" x="16" y="105" width="80" height="21"/>
+                        <rect key="frame" x="16" y="105" width="110" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

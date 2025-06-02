@@ -118,7 +118,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .leading
+            alignment: .top
         )
         section.boundarySupplementaryItems = [sectionHeader]
         return section
@@ -127,21 +127,36 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     func upcomingSection () -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.90), heightDimension: .absolute(225))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(225))
        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
        , subitems: [item])
            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-           , bottom: 0, trailing: 15)
+           , bottom: 0, trailing: 0)
            
+        
        let section = NSCollectionLayoutSection(group: group)
+        
            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
-           , bottom: 10, trailing: 0)
+           , bottom: 10, trailing: 16)
            section.orthogonalScrollingBehavior = .continuous
+        
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+            items.forEach { item in
+                guard item.representedElementCategory == .cell else { return }
+
+                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2)
+                let minScale: CGFloat = 0.87
+                let maxScale: CGFloat = 1.1
+                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                item.transform = CGAffineTransform(scaleX: scale, y: scale)
+            }
+        }
+        
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .leading
+            alignment: .top
         )
         section.boundarySupplementaryItems = [sectionHeader]
         return section
@@ -162,7 +177,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .leading
+            alignment: .top
         )
         section.boundarySupplementaryItems = [sectionHeader]
         return section

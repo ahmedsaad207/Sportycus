@@ -18,6 +18,7 @@ class TeamsCell: UICollectionViewCell {
     func config(teamName: String, teamImg:String){
         self.teamName.text = teamName
         self.teamImg.kf.setImage(with: URL(string: teamImg), placeholder: UIImage(systemName: "photo"))
+        self.teamImg.contentMode = .scaleAspectFill
     }
 
 }
