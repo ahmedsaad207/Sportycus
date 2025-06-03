@@ -1,0 +1,30 @@
+import Reachability
+
+class NetworkMonitor {
+    static let shared = NetworkMonitor()
+
+    private let reachability: Reachability?
+    var onStatusChange: ((Bool) -> Void)?
+
+    private init() {
+        reachability = try? Reachability()
+        setupReachability()
+        try? reachability?.startNotifier()
+    }
+
+    private func setupReachability() {
+        reachability?.whenReachable = { [weak self] _ in
+            print("Internet available")
+            self?.onStatusChange?(true)
+        }
+
+        reachability?.whenUnreachable = { [weak self] _ in
+            print("No internet")
+            self?.onStatusChange?(false)
+        }
+    }
+
+    deinit {
+        reachability?.stopNotifier()
+    }
+}
