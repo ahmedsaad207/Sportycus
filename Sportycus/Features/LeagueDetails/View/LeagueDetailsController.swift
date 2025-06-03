@@ -74,7 +74,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     target: self,
                     action: #selector(heartButtonTapped)
                 )
-            heartButton.tintColor = .red 
+            heartButton.tintColor = .red
                 navigationItem.rightBarButtonItem = heartButton
         }
     
