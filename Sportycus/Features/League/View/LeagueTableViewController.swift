@@ -52,9 +52,11 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueTableViewCell
         let league = presenter.league(at: indexPath.row)
+        let placeholder = UIImage(systemName: "trophy.fill")?.withRenderingMode(.alwaysTemplate)
+        cell.leagueLogo.tintColor = .gray
         
         cell.leagueName.text = league.league_name
-        cell.leagueLogo.kf.setImage(with: URL(string: league.league_logo ?? ""), placeholder: UIImage(systemName: "photo"))
+        cell.leagueLogo.kf.setImage(with: URL(string: league.league_logo ?? ""), placeholder: placeholder)
         return cell
     }
     

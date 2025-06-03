@@ -371,8 +371,9 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
             if isFavorite {
                 showDeleteAlert()
             } else {
-                let league = League(league_key: self.currentLeague.league_key!, league_name: self.currentLeague.league_name!, league_logo: self.currentLeague.league_logo)
-                presenter.addLeague(league: league)
+                let league = League(league_key: self.currentLeague.league_key!, league_name: self.currentLeague.league_name!, league_logo: self.currentLeague.league_logo, country_name: self.currentLeague.country_name)
+                
+                presenter.addLeague(league: league, sportType: presenter.getSportType().rawValue)
                 toggle()
             }
         }

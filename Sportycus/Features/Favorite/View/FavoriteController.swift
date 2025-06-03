@@ -30,6 +30,9 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
     func registerNibs() {
         let nib = UINib(nibName: "LeagueCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "LeagueCell")
+        
+        let nibEmpty = UINib(nibName: "EmptyCollectionViewCell", bundle: nil)
+        collectionView.register(nibEmpty, forCellWithReuseIdentifier: "EmptyCollectionViewCell")
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -38,15 +41,22 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return leagues.count
+        if leagues.isEmpty {return 1} else {return leagues.count}
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if leagues.isEmpty {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCollectionViewCell", for: indexPath) as! EmptyCollectionViewCell
+            return cell
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LeagueCell", for: indexPath) as! LeagueCell
         let league = leagues[indexPath.row]
         cell.leagueName.text = league.leagueName
-        cell.leagueCountry.text = league.leagueName
-        cell.leagueLogo.kf.setImage(with: URL(string: league.leagueLogo ?? ""), placeholder: UIImage(systemName: "photo"))
+        cell.leagueCountry.text = league.leagueCountry
+        
+        let placeholder = UIImage(systemName: "trophy.fill")?.withRenderingMode(.alwaysTemplate)
+        cell.leagueLogo.tintColor = .gray
+        cell.leagueLogo.kf.setImage(with: URL(string: league.leagueLogo ?? ""), placeholder: placeholder)
         return cell
     }
 
@@ -57,7 +67,9 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 96)
+        var height: CGFloat!
+        height = leagues.isEmpty ? view.safeAreaLayoutGuide.layoutFrame.height : 96
+        return CGSize(width: collectionView.frame.width, height: height)
     }
     
     @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
@@ -82,7 +94,13 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView.reloadData()
     }
 
-    
-    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if leagues.isEmpty {return}
+        let league = leagues[indexPath.row]
+        let storyBoardLeagueDetails = UIStoryboard(name: "LeagueDetails", bundle: nil)
+        let leagueDetailsVC = storyBoardLeagueDetails.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsController
+        leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: SportType(rawValue: league.sportType!)!, league: mapFavoriteLeagueToLeague(league))
+        navigationController?.pushViewController(leagueDetailsVC, animated: true)
+    }
 
 }
