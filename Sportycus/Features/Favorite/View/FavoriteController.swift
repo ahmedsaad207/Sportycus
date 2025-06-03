@@ -12,12 +12,20 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setCollectionViewBackground()
         navigationItem.title = "Favorites Leagues"
         presenter = FavoritePresenter(vc: self)
         registerNibs()
         presenter.getLeagues()
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
+    }
+    
+    private func setCollectionViewBackground() {
+        let backgroundImage = UIImageView(frame: collectionView.bounds)
+        backgroundImage.image = UIImage(named: "bg")
+        backgroundImage.contentMode = .scaleAspectFill
+        collectionView.backgroundView = backgroundImage
     }
     
     func renderToView(data: [FavoriteLeague]) {

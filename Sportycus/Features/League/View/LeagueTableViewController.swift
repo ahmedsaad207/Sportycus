@@ -25,6 +25,8 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
         setupAppbar()
         presenter.getLeagues()
         
+
+        view.backgroundColor = AppColors.darkColor
         networkIndicator = UIActivityIndicatorView()
         networkIndicator.center = view.center
         view.addSubview(networkIndicator)

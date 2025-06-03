@@ -70,6 +70,8 @@
 		F091CCB02DEB95DB0034F221 /* Navigate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091CCAC2DEB95DB0034F221 /* Navigate.swift */; };
 		F091CCB12DEB95DB0034F221 /* CellID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091CCAB2DEB95DB0034F221 /* CellID.swift */; };
 		F091CCB32DEB95EA0034F221 /* SportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091CCB22DEB95EA0034F221 /* SportType.swift */; };
+		F0A92D702DEE6782004594E3 /* PngFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A92D6F2DEE6782004594E3 /* PngFixer.swift */; };
+		F0FB65E32DEF297C008AD43D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FB65E22DEF297C008AD43D /* AppColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +143,8 @@
 		F091CCAC2DEB95DB0034F221 /* Navigate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigate.swift; sourceTree = "<group>"; };
 		F091CCAD2DEB95DB0034F221 /* StoryboardID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardID.swift; sourceTree = "<group>"; };
 		F091CCB22DEB95EA0034F221 /* SportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportType.swift; sourceTree = "<group>"; };
+		F0A92D6F2DEE6782004594E3 /* PngFixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PngFixer.swift; sourceTree = "<group>"; };
+		F0FB65E22DEF297C008AD43D /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		FA47E4B53F0E517874EE3040 /* Pods-Sportycus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportycus.release.xcconfig"; path = "Target Support Files/Pods-Sportycus/Pods-Sportycus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -500,6 +504,8 @@
 				F091CCAD2DEB95DB0034F221 /* StoryboardID.swift */,
 				F091CCB22DEB95EA0034F221 /* SportType.swift */,
 				F08893052DED03AB00A7E32B /* DateFilter.swift */,
+				F0A92D6F2DEE6782004594E3 /* PngFixer.swift */,
+				F0FB65E22DEF297C008AD43D /* AppColors.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -661,9 +667,11 @@
 				C56F6B532DE92A9500FEAC71 /* TeamResponse.swift in Sources */,
 				C5312C9E2DEB5EB100144FE1 /* UpcomingEventsCell.swift in Sources */,
 				C5E52C212DEB3511009222B8 /* HomeCollectionViewController.swift in Sources */,
+				F0A92D702DEE6782004594E3 /* PngFixer.swift in Sources */,
 				C5CD0B812DE87D6700273B03 /* AppDelegate.swift in Sources */,
 				C5312CA22DEB5EB100144FE1 /* LatestEventsCell.swift in Sources */,
 				C5DEC0C42DEB55AD000A555F /* SportCell.swift in Sources */,
+				F0FB65E32DEF297C008AD43D /* AppColors.swift in Sources */,
 				C50BC4592DEB398000714A46 /* Sport.swift in Sources */,
 				C5175FDF2DEBA24300E90B75 /* LeaguesCoreData.swift in Sources */,
 				C5312C972DEB5EB100144FE1 /* LeagueDetailsPresenter.swift in Sources */,

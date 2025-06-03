@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class TeamsCell: UICollectionViewCell {
 
     @IBOutlet weak var teamName: UILabel!
@@ -15,10 +15,26 @@ class TeamsCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func config(teamName: String, teamImg:String){
+    
+    func config(teamName: String, teamImg: String) {
         self.teamName.text = teamName
-        self.teamImg.kf.setImage(with: URL(string: teamImg), placeholder: UIImage(systemName: "photo"))
         self.teamImg.contentMode = .scaleAspectFill
+        self.teamImg.layer.cornerRadius = 22
+        self.teamImg.clipsToBounds = true
+
+        if let url = URL(string: teamImg) {
+            KingfisherManager.shared.retrieveImage(with: url) { result in
+                switch result {
+                case .success(let value):
+                    if let trimmed = value.image.trimmedTransparentPixels() {
+                        self.teamImg.image = trimmed
+                    }
+                case .failure:
+                    self.teamImg.image = UIImage(systemName: "photo")
+                }
+            }
+        }
     }
+
 
 }

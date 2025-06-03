@@ -74,6 +74,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     target: self,
                     action: #selector(heartButtonTapped)
                 )
+            heartButton.tintColor = .red 
                 navigationItem.rightBarButtonItem = heartButton
         }
     
@@ -83,7 +84,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         registerNibs()
         presenter.getLeagueDetails()
         presenter.isLeagueExist(leagueKey: currentLeague.league_key!)
-
     }
     
     func setLayout(){
@@ -127,7 +127,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     func upcomingSection () -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .absolute(225))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(230), heightDimension: .absolute(400))
        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
        , subitems: [item])
            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
@@ -136,8 +136,8 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         
        let section = NSCollectionLayoutSection(group: group)
         
-           section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
-           , bottom: 10, trailing: 16)
+           section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16
+           , bottom: 10, trailing: 0)
            section.orthogonalScrollingBehavior = .continuous
         
         section.visibleItemsInvalidationHandler = { (items, offset, environment) in
@@ -146,7 +146,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
 
                 let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2)
                 let minScale: CGFloat = 0.87
-                let maxScale: CGFloat = 1.1
+                let maxScale: CGFloat = 1.05
                 let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
                 item.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
@@ -165,7 +165,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     func latestSection () -> NSCollectionLayoutSection{
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(225))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(210))
        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
        , subitems: [item])
            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom:16, trailing: 0)
@@ -240,7 +240,8 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 withReuseIdentifier: CellID.teamCell.rawValue,
                 for: indexPath
             ) as! TeamsCell
-            
+            cell.layer.cornerRadius = 16
+
             let team = teamList?[indexPath.row]
             cell.config(teamName: team?.team_name ?? "", teamImg: team?.team_logo ?? "")
             return cell
@@ -251,6 +252,8 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 for: indexPath
             ) as! UpcomingEventsCell
 
+            cell.layer.cornerRadius = 16
+            
             switch presenter?.getSportType() {
             case .football:
                 let fixture = footballFixtures.1[indexPath.item]
@@ -306,6 +309,8 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 withReuseIdentifier: CellID.latestEventCell.rawValue,
                 for: indexPath
             ) as! LatestEventsCell
+            cell.layer.cornerRadius = 16
+
 
             switch presenter?.getSportType() {
             case .football:
