@@ -24,6 +24,9 @@ class TeamController: UITableViewController, TeamViewProtocol {
         
         let nibPlayer = UINib(nibName: "PlayerCell", bundle: nil)
         tableView.register(nibPlayer, forCellReuseIdentifier: "playerCell")
+        
+        let nibEmpty = UINib(nibName: "EmptyTableViewCell", bundle: nil)
+        tableView.register(nibEmpty, forCellReuseIdentifier: "EmptyTableViewCell")
 
         TeamPresenter(vc: self).getTeam(sport: sportName,teamKey: teamKey, leagueId: leagueId)
     }
@@ -48,8 +51,8 @@ class TeamController: UITableViewController, TeamViewProtocol {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             case 0: return 1
-            case 1: return team.coaches?.count ?? 0
-            case 2: return team.players?.count ?? 0
+            case 1: return team.coaches?.count ?? 1
+            case 2: return team.players?.count ?? 1
             default: return 0
         }
         
@@ -67,22 +70,40 @@ class TeamController: UITableViewController, TeamViewProtocol {
         if (indexPath.section == 0) {
             return 230
         }
+        
+        if team.coaches?.count ?? 0 == 0 || team.players?.count ?? 0 == 0{ return 160} else {}
         return 96
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // team information
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "teamInfoCell", for: indexPath) as! TeamInfoCell
             cell.teamName.text = team.team_name
-            cell.teamLogo.kf.setImage(with: URL(string: team.team_logo ?? ""), placeholder: UIImage(systemName: "photo"))
+            
+            let placeholder = UIImage(systemName: "shield.fill")?.withRenderingMode(.alwaysTemplate)
+            cell.teamLogo.tintColor = .gray
+            cell.teamLogo.kf.setImage(with: URL(string: team.team_logo ?? ""), placeholder: placeholder)
             return cell
         }
         
+        let coachesEmpty = team.coaches?.isEmpty ?? true
+        let playersEmpty = team.players?.isEmpty ?? true
         
+        if (indexPath.section == 1 && coachesEmpty) {
+            let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as! EmptyTableViewCell
+                emptyCell.playerLabel.text = "No Coaches Found"
+                return emptyCell
+        } else if (indexPath.section == 2 && coachesEmpty) {
+            let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as! EmptyTableViewCell
+                emptyCell.playerLabel.text = "No Players Found"
+                return emptyCell
+        }
+        
+        // data
         let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as! PlayerCell
-        
         
         switch indexPath.section {
             case 1:
@@ -95,7 +116,9 @@ class TeamController: UITableViewController, TeamViewProtocol {
                 cell.playerName.text = player.player_name
                 cell.playerNumber.text = "#\(player.player_number ?? "0")"
                 cell.playerPosition.text = player.player_type
-                cell.playerImage.kf.setImage(with: URL(string: player.player_image ?? ""), placeholder: UIImage(systemName: "person"))
+            
+                let placeholder = UIImage(named: "player")
+                cell.playerImage.kf.setImage(with: URL(string: player.player_image ?? ""), placeholder: placeholder)
             default: cell.playerName.text = ""
         }
         return cell

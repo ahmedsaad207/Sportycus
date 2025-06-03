@@ -10,7 +10,7 @@ import Foundation
 protocol LeagueDetailsPresenterProtocol {
     func getLeagueDetails()
     func getLeague()
-    func addLeague(league: League)
+    func addLeague(league: League, sportType: String)
     func deleteLeague(key: Int)
     func getSportType()->SportType
     func isLeagueExist(leagueKey: Int)
@@ -38,8 +38,8 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
         view.onLeagueCheckedIfCached(cached: local.isLeagueExist(leagueKey: leagueKey))
     }
     
-    func addLeague(league: League) {
-        local.addLeague(league: league)
+    func addLeague(league: League, sportType: String) {
+        local.addLeague(league: league, sportType: sportType)
     }
     
     func deleteLeague(key: Int) {

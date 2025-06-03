@@ -6,8 +6,8 @@ class LeagueLocalDataSource {
         return coreData.isLeagueExist(leagueKey: leagueKey)
     }
 
-    func addLeague(league: League) {
-        coreData.addLeague(league: league)
+    func addLeague(league: League, sportType: String) {
+        coreData.addLeague(league: league, sportType: sportType)
     }
     
     func deleteLeague(key: Int) {
