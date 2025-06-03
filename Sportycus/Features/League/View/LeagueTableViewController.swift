@@ -24,7 +24,7 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
         super.viewDidLoad()
         
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0) // for vertical space at top/bottom
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.rowHeight = 120
         
@@ -43,7 +43,6 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
     private func setTableViewBackground() {
         let backgroundImage = UIImageView(frame: tableView.bounds)
         view.backgroundColor = AppColors.darkColor
-//        backgroundImage.image = UIImage(named: "blurbg")
         backgroundImage.contentMode = .scaleAspectFill
         tableView.backgroundView = backgroundImage
     }
@@ -100,9 +99,9 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
         cell.separatorInset = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)
         cell.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
 
-        // cell.contentView.layer.cornerRadius = 12
-        // cell.contentView.layer.masksToBounds = true
-        
+        let transparentView = UIView()
+        transparentView.backgroundColor = .clear
+        cell.selectedBackgroundView = transparentView
         
         return cell
     }

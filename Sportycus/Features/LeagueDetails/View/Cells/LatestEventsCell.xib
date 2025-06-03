@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,6 +20,15 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cs6-Ly-BnD">
                         <rect key="frame" x="0.0" y="0.0" width="429" height="197"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSP-Va-Bh9">
+                                <rect key="frame" x="0.0" y="0.0" width="429" height="197"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PgS-le-dk4">
+                                    <rect key="frame" x="0.0" y="0.0" width="429" height="197"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" red="0.0" green="0.060768721811124457" blue="0.29797979797979801" alpha="0.49337748344370863" colorSpace="custom" customColorSpace="sRGB"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6dM-LM-d31">
                                 <rect key="frame" x="277" y="12" width="140" height="110"/>
                                 <constraints>
@@ -71,9 +79,10 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MlJ-O9-XkD" firstAttribute="leading" secondItem="cs6-Ly-BnD" secondAttribute="leading" constant="12" id="4oO-Zw-OcJ"/>
+                            <constraint firstAttribute="bottom" secondItem="oSP-Va-Bh9" secondAttribute="bottom" id="694-RA-0HW"/>
                             <constraint firstItem="UAg-L7-XUQ" firstAttribute="leading" secondItem="6dM-LM-d31" secondAttribute="leading" id="AXy-sB-PXn"/>
                             <constraint firstItem="PiC-Vk-xVG" firstAttribute="leading" secondItem="MlJ-O9-XkD" secondAttribute="leading" id="GT4-6C-Kxx"/>
                             <constraint firstItem="pJY-IH-2iE" firstAttribute="centerY" secondItem="MlJ-O9-XkD" secondAttribute="centerY" id="IIO-yL-uAC"/>
@@ -85,7 +94,10 @@
                             <constraint firstAttribute="trailing" secondItem="aln-qt-pPI" secondAttribute="trailing" constant="12" id="P0L-EE-fWX"/>
                             <constraint firstItem="aln-qt-pPI" firstAttribute="leading" secondItem="cs6-Ly-BnD" secondAttribute="leading" constant="12" id="Ub5-tE-zWT"/>
                             <constraint firstItem="6dM-LM-d31" firstAttribute="top" secondItem="cs6-Ly-BnD" secondAttribute="top" constant="12" id="UzD-ok-T4A"/>
+                            <constraint firstItem="oSP-Va-Bh9" firstAttribute="top" secondItem="cs6-Ly-BnD" secondAttribute="top" id="WpJ-it-b6B"/>
+                            <constraint firstItem="oSP-Va-Bh9" firstAttribute="leading" secondItem="cs6-Ly-BnD" secondAttribute="leading" id="Xv8-PD-d6R"/>
                             <constraint firstItem="UAg-L7-XUQ" firstAttribute="trailing" secondItem="6dM-LM-d31" secondAttribute="trailing" id="etn-WQ-DQg"/>
+                            <constraint firstAttribute="trailing" secondItem="oSP-Va-Bh9" secondAttribute="trailing" id="n5P-1H-7FI"/>
                             <constraint firstItem="pJY-IH-2iE" firstAttribute="centerX" secondItem="cs6-Ly-BnD" secondAttribute="centerX" id="nP8-Po-nzJ"/>
                             <constraint firstItem="pJY-IH-2iE" firstAttribute="top" secondItem="cs6-Ly-BnD" secondAttribute="top" constant="38" id="vjC-5E-xQR"/>
                             <constraint firstAttribute="trailing" secondItem="6dM-LM-d31" secondAttribute="trailing" constant="12" id="x8H-m6-TVc"/>
@@ -113,9 +125,4 @@
             <point key="canvasLocation" x="46.564885496183201" y="16.549295774647888"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

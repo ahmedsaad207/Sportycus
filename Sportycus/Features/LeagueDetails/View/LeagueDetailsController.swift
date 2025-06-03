@@ -80,11 +80,28 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackgroundImage()
         setLayout()
         registerNibs()
         presenter.getLeagueDetails()
         presenter.isLeagueExist(leagueKey: currentLeague.league_key!)
     }
+    
+    func setBackgroundImage() {
+        let backgroundImage = UIImage(named: "bg")
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundView = backgroundImageView
+
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: collectionView.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor)
+        ])
+    }
+
     
     func setLayout(){
         let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
@@ -121,6 +138,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
             alignment: .top
         )
         section.boundarySupplementaryItems = [sectionHeader]
+        
         return section
     }
     
@@ -152,36 +170,88 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
             }
         }
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-        section.boundarySupplementaryItems = [sectionHeader]
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+            section.boundarySupplementaryItems = [sectionHeader]
+        
         return section
     }
+
     
-    func latestSection () -> NSCollectionLayoutSection{
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(210))
-       let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
-       , subitems: [item])
-           group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom:16, trailing: 0)
-           
-       let section = NSCollectionLayoutSection(group: group)
-           section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16
-           , bottom: 0, trailing: 16)
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+//    func latestSection () -> NSCollectionLayoutSection{
+//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(210))
+//       let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
+//       , subitems: [item])
+//           group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom:16, trailing: 0)
+//           
+//       let section = NSCollectionLayoutSection(group: group)
+//           section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16
+//           , bottom: 0, trailing: 16)
+//        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+//        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+//            layoutSize: headerSize,
+//            elementKind: UICollectionView.elementKindSectionHeader,
+//            alignment: .top
+//        )
+//        section.boundarySupplementaryItems = [sectionHeader]
+//        return section
+//    }
+    func latestSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
+
+        let separatorSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(1)
+        )
+        let separator = NSCollectionLayoutSupplementaryItem(
+            layoutSize: separatorSize,
+            elementKind: "separator-element-kind",
+            containerAnchor: NSCollectionLayoutAnchor(edges: [.bottom], fractionalOffset: .zero)
+        )
+
+        let item = NSCollectionLayoutItem(
+            layoutSize: itemSize,
+            supplementaryItems: [separator]
+        )
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(210)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        group.contentInsets = .zero
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .zero
+
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(40)
+        )
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
+        
+        sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0)
         section.boundarySupplementaryItems = [sectionHeader]
+
         return section
     }
+
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
@@ -190,6 +260,8 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 withReuseIdentifier: CellID.sectionHeader.rawValue,
                 for: indexPath
             ) as! HeaderCollectionReusableView
+
+            header.headerLabel.textColor = .white
 
             switch indexPath.section {
             case 0:
@@ -200,9 +272,19 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 header.headerLabel.text = "Latest Events"
             }
             return header
+        } else if kind == "separator-element-kind" {
+            let separatorView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: "separator-id",
+                for: indexPath
+            )
+            separatorView.backgroundColor = .lightGray
+            return separatorView
         }
+
         return UICollectionReusableView()
     }
+
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
@@ -309,7 +391,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 withReuseIdentifier: CellID.latestEventCell.rawValue,
                 for: indexPath
             ) as! LatestEventsCell
-            cell.layer.cornerRadius = 16
+//            cell.layer.cornerRadius = 16
 
 
             switch presenter?.getSportType() {
@@ -372,6 +454,8 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         collectionView.register(nibUpcomingEvents, forCellWithReuseIdentifier: CellID.upcomingEventCell.rawValue)
         collectionView.register(nibLatestEvents, forCellWithReuseIdentifier: CellID.latestEventCell.rawValue)
         collectionView.register(nibTeams, forCellWithReuseIdentifier: CellID.teamCell.rawValue)
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: "separator-element-kind", withReuseIdentifier: "separator-id")
+
     }
     
     

@@ -29,19 +29,21 @@ class LatestEventsCell: UICollectionViewCell {
         self.score.text = score
         self.time.text = time
         self.date.text = date
+        self.homeTeamImg.contentMode = .scaleAspectFit
+        self.awayTeamImg.contentMode = .scaleAspectFit
         
-        self.homeTeamImg.layer.cornerRadius = 22
-        self.awayTeamImg.layer.cornerRadius = 22
-        self.homeTeamImg.clipsToBounds = true
-        self.awayTeamImg.clipsToBounds = true
+//        self.homeTeamImg.layer.cornerRadius = 22
+//        self.awayTeamImg.layer.cornerRadius = 22
+//        self.homeTeamImg.clipsToBounds = true
+//        self.awayTeamImg.clipsToBounds = true
         
         if let homeUrl = URL(string: homeTeamImg) {
             KingfisherManager.shared.retrieveImage(with: homeUrl) { result in
                 switch result {
                 case .success(let value):
-                    if let trimmed = value.image.trimmedTransparentPixels() {
-                        self.homeTeamImg.image = trimmed
-                    }
+//                    if let trimmed = value.image.trimmedTransparentPixels() {
+                        self.homeTeamImg.image = value.image
+//                    }
                 case .failure:
                     self.homeTeamImg.image = UIImage(systemName: "photo")
                 }
@@ -52,9 +54,9 @@ class LatestEventsCell: UICollectionViewCell {
             KingfisherManager.shared.retrieveImage(with: awayUrl) { result in
                 switch result {
                 case .success(let value):
-                    if let trimmed = value.image.trimmedTransparentPixels() {
-                        self.awayTeamImg.image = trimmed
-                    }
+//                    if let trimmed = value.image.trimmedTransparentPixels() {
+                        self.awayTeamImg.image = value.image
+//                    }
                 case .failure:
                     self.awayTeamImg.image = UIImage(systemName: "photo")
                 }

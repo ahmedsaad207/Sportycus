@@ -27,20 +27,20 @@ class UpcomingEventsCell: UICollectionViewCell {
         self.timeLabel.text = time
         self.dateLabel.text = date
 
-        self.awayTeamImg.contentMode = .scaleAspectFill
-        self.homeTeamImg.contentMode = .scaleAspectFill
-        self.awayTeamImg.layer.cornerRadius = 22
-        self.homeTeamImg.layer.cornerRadius = 22
-        self.awayTeamImg.clipsToBounds = true
-        self.homeTeamImg.clipsToBounds = true
+        self.awayTeamImg.contentMode = .scaleAspectFit
+        self.homeTeamImg.contentMode = .scaleAspectFit
+//        self.awayTeamImg.layer.cornerRadius = 22
+//        self.homeTeamImg.layer.cornerRadius = 22
+//        self.awayTeamImg.clipsToBounds = true
+//        self.homeTeamImg.clipsToBounds = true
 
         if let awayUrl = URL(string: awayTeamImg) {
             KingfisherManager.shared.retrieveImage(with: awayUrl) { result in
                 switch result {
                 case .success(let value):
-                    if let trimmed = value.image.trimmedTransparentPixels() {
-                        self.awayTeamImg.image = trimmed
-                    }
+//                    if let trimmed = value.image.trimmedTransparentPixels() {
+                        self.awayTeamImg.image = value.image
+//                    }
                 case .failure:
                     self.awayTeamImg.image = UIImage(systemName: "photo")
                 }
@@ -51,9 +51,9 @@ class UpcomingEventsCell: UICollectionViewCell {
             KingfisherManager.shared.retrieveImage(with: homeUrl) { result in
                 switch result {
                 case .success(let value):
-                    if let trimmed = value.image.trimmedTransparentPixels() {
-                        self.homeTeamImg.image = trimmed
-                    }
+//                    if let trimmed = value.image.trimmedTransparentPixels() {
+                        self.homeTeamImg.image = value.image
+//                    }
                 case .failure:
                     self.homeTeamImg.image = UIImage(systemName: "photo")
                 }
