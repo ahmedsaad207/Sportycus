@@ -85,6 +85,7 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if leagues.isEmpty {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmptyCollectionViewCell", for: indexPath) as! EmptyCollectionViewCell
+            cell.config(msg: "No Favorite Leagues")
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LeagueCell", for: indexPath) as! LeagueCell
@@ -122,7 +123,7 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
 
         guard let indexPath = collectionView.indexPathForItem(at: point) else { return }
 
-        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Unfavorite", message: "Are you sure you want to remove from favorites?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             self.presenter.deleteLeague(key: Int(self.leagues[indexPath.row].leagueKey))

@@ -38,11 +38,6 @@ class TeamController: UITableViewController, TeamViewProtocol {
 //            self.loadingView.hide()
         }
     }
-    
-    @objc func onFavoriteButtonClick() {
-        print("Favorite clicked!")
-    }
-
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3

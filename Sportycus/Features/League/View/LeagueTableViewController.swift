@@ -96,7 +96,6 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
         cell.leagueName.textColor = .white
         cell.leagueName.text = league.league_name
 
-        print(cell.leagueLogo.layer.frame.size)
         cell.leagueLogo.kf.setImage(with: URL(string: league.league_logo ?? ""), placeholder: placeholder)
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16)

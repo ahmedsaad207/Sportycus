@@ -10,7 +10,6 @@ class TeamService : TeamServiceProtocol {
         let baseUrl = "https://apiv2.allsportsapi.com/"
         let apiKey = "586f22d0c8d25e87a307eb2b356adf784613495adeb6e3f00403fd33c481b2d2"
         let url = "\(baseUrl)\(sport)?met=Teams&leagueId=\(leagueId)&teamId=\(teamKey)&APIkey=\(apiKey)"
-        print(url)
         
         URLSession.shared.dataTask(with: URLRequest(url: URL(string: url)!)) {data,response ,error in
             guard let data = data else {return}

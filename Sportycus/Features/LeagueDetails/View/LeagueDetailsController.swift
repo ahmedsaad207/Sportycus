@@ -58,7 +58,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     
     func displayPlayers(players: [Player]) {
         playersList = players
-        print("PLAYERS \(self.playersList)")
         DispatchQueue.main.async{
             self.collectionView.reloadSections(IndexSet(integer: 0))
         }
@@ -85,7 +84,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     target: self,
                     action: #selector(heartButtonTapped)
                 )
-            heartButton.tintColor = .red
+            heartButton.tintColor = .green
                 navigationItem.rightBarButtonItem = heartButton
         }
     
@@ -155,10 +154,13 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     }
     
     func upcomingSection () -> NSCollectionLayoutSection{
+        
+        let count = self.getSectionCountBasedOnSport(sportType: self.presenter.getSportType()).1
+        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(230), heightDimension: .absolute(400))
-       let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(230), heightDimension: .absolute( count == 0 ? 170 : 400 ))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
        , subitems: [item])
            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
            , bottom: 0, trailing: 0)
@@ -194,26 +196,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
     }
 
     
-//    func latestSection () -> NSCollectionLayoutSection{
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(210))
-//       let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
-//       , subitems: [item])
-//           group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom:16, trailing: 0)
-//           
-//       let section = NSCollectionLayoutSection(group: group)
-//           section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16
-//           , bottom: 0, trailing: 16)
-//        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
-//        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-//            layoutSize: headerSize,
-//            elementKind: UICollectionView.elementKindSectionHeader,
-//            alignment: .top
-//        )
-//        section.boundarySupplementaryItems = [sectionHeader]
-//        return section
-//    }
+
     func latestSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
@@ -306,11 +289,14 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
 
         switch section {
         case 0:
-            return presenter.getSportType() == .tennis ? self.playersList?.count ?? 0 : self.teamList?.count ?? 0
+            let count = presenter.getSportType() == .tennis ? self.playersList?.count ?? 0 : self.teamList?.count ?? 0
+            return count == 0 ? 1 : count
         case 1:
-            return self.getSectionCountBasedOnSport(sportType: self.presenter.getSportType()).1
+            let count = self.getSectionCountBasedOnSport(sportType: self.presenter.getSportType()).1
+            return count == 0 ? 1 : count
         default:
-            return self.getSectionCountBasedOnSport(sportType: self.presenter.getSportType()).0
+            let count = self.getSectionCountBasedOnSport(sportType: self.presenter.getSportType()).0
+            return count == 0 ? 1 : count
         }
     }
 
@@ -327,34 +313,193 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         }
     }
     
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        switch indexPath.section {
+//        case 0:
+//            let cell = collectionView.dequeueReusableCell(
+//                withReuseIdentifier: CellID.teamCell.rawValue,
+//                for: indexPath
+//            ) as! TeamsCell
+//            cell.layer.cornerRadius = 16
+//
+//            if presenter.getSportType() == .tennis {
+//                let player = playersList?[indexPath.row]
+//                cell.configPlayerCell(teamName: player?.player_name ?? "", teamImg: player?.player_logo ?? "")
+//                cell.teamImg.backgroundColor = .white
+//            }else{
+//                let team = teamList?[indexPath.row]
+//                cell.config(teamName: team?.team_name ?? "", teamImg: team?.team_logo ?? "")
+//            }
+//            return cell
+//
+//        case 1:
+//            let cell = collectionView.dequeueReusableCell(
+//                withReuseIdentifier: CellID.upcomingEventCell.rawValue,
+//                for: indexPath
+//            ) as! UpcomingEventsCell
+//
+//            cell.layer.cornerRadius = 16
+//            
+//            switch presenter?.getSportType() {
+//            case .football:
+//                let fixture = footballFixtures.1[indexPath.item]
+//                cell.config(
+//                    time: fixture.time ?? "",
+//                    date: fixture.date ?? "",
+//                    homeName: fixture.homeTeam ?? "",
+//                    awayName: fixture.awayTeam ?? "",
+//                    awayTeamImg: fixture.awayTeamLogo ?? "",
+//                    homeTeamImg: fixture.homeTeamLogo ?? ""
+//                )
+//
+//            case .basketball:
+//                let fixture = basketballFixtures.1[indexPath.item]
+//                cell.config(
+//                    time: fixture.time ?? "",
+//                    date: fixture.date ?? "",
+//                    homeName: fixture.homeTeam ?? "",
+//                    awayName: fixture.awayTeam ?? "",
+//                    awayTeamImg: fixture.awayTeamLogo ?? "",
+//                    homeTeamImg: fixture.homeTeamLogo ?? ""
+//                )
+//
+//            case .tennis:
+//                let fixture = tennisFixtures.1[indexPath.item]
+//                cell.config(
+//                    time: fixture.time ?? "",
+//                    date: fixture.date ?? "",
+//                    homeName: fixture.firstPlayer ?? "",
+//                    awayName: fixture.secondPlayer ?? "",
+//                    awayTeamImg: fixture.secondPlayerLogo ?? "",
+//                    homeTeamImg: fixture.firstPlayerLogo ?? ""
+//                )
+//
+//            case .cricket:
+//                let fixture = cricketFixtures.1[indexPath.item]
+//                cell.config(
+//                    time: fixture.time ?? "",
+//                    date: fixture.dateStart ?? "",
+//                    homeName: fixture.homeTeam ?? "",
+//                    awayName: fixture.awayTeam ?? "",
+//                    awayTeamImg: fixture.awayTeamLogo ?? "",
+//                    homeTeamImg: fixture.homeTeamLogo ?? ""
+//                )
+//
+//            default:
+//                break
+//            }
+//            return cell
+//
+//        default:
+//            let cell = collectionView.dequeueReusableCell(
+//                withReuseIdentifier: CellID.latestEventCell.rawValue,
+//                for: indexPath
+//            ) as! LatestEventsCell
+////            cell.layer.cornerRadius = 16
+//
+//
+//            switch presenter?.getSportType() {
+//            case .football:
+//                let fixture = footballFixtures.0[indexPath.item]
+//                cell.config(
+//                    homeTeamName: fixture.homeTeam ?? "",
+//                    awayTeamName: fixture.awayTeam ?? "",
+//                    homeTeamImg: fixture.homeTeamLogo ?? "",
+//                    awayTeamImg: fixture.awayTeamLogo ?? "",
+//                    score: fixture.finalResult ?? "-",
+//                    time: fixture.time ?? "",
+//                    date: fixture.date ?? ""
+//                )
+//            case .basketball:
+//                let fixture = basketballFixtures.0[indexPath.item]
+//                cell.config(
+//                    homeTeamName: fixture.homeTeam ?? "",
+//                    awayTeamName: fixture.awayTeam ?? "",
+//                    homeTeamImg: fixture.homeTeamLogo ?? "",
+//                    awayTeamImg: fixture.awayTeamLogo ?? "",
+//                    score: fixture.finalResult ?? "-",
+//                    time: fixture.time ?? "",
+//                    date: fixture.date ?? ""
+//                )
+//            case .tennis:
+//                let fixture = tennisFixtures.0[indexPath.item]
+//                cell.config(
+//                    homeTeamName: fixture.firstPlayer ?? "",
+//                    awayTeamName: fixture.secondPlayer ?? "",
+//                    homeTeamImg: fixture.firstPlayerLogo ?? "",
+//                    awayTeamImg: fixture.secondPlayerLogo ?? "",
+//                    score: fixture.finalResult ?? "-",
+//                    time: fixture.time ?? "",
+//                    date: fixture.date ?? ""
+//                )
+//            case .cricket:
+//                let fixture = cricketFixtures.0[indexPath.item]
+//                cell.config(
+//                    homeTeamName: fixture.homeTeam ?? "",
+//                    awayTeamName: fixture.awayTeam ?? "",
+//                    homeTeamImg: fixture.homeTeamLogo ?? "",
+//                    awayTeamImg: fixture.awayTeamLogo ?? "",
+//                    score: fixture.status ?? "",
+//                    time: fixture.time ?? "",
+//                    date: fixture.dateStart ?? ""
+//                )
+//            default:
+//                break
+//            }
+//            return cell
+//        }
+//    }
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
+            // Check if teams/players are empty
+            let isTennis = presenter.getSportType() == .tennis
+            let isEmpty = isTennis ? (playersList?.isEmpty ?? true) : (teamList?.isEmpty ?? true)
+
+            if isEmpty {
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: CellID.emptyCell.rawValue,
+                    for: indexPath
+                ) as! EmptyCollectionViewCell
+                cell.config(msg: "No teams or players available.")
+                return cell
+            }
+
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CellID.teamCell.rawValue,
                 for: indexPath
             ) as! TeamsCell
             cell.layer.cornerRadius = 16
 
-            if presenter.getSportType() == .tennis {
-                let player = playersList?[indexPath.row]
+            if isTennis {
+                let player = playersList?[indexPath.item]
                 cell.configPlayerCell(teamName: player?.player_name ?? "", teamImg: player?.player_logo ?? "")
                 cell.teamImg.backgroundColor = .white
-            }else{
-                let team = teamList?[indexPath.row]
+            } else {
+                let team = teamList?[indexPath.item]
                 cell.config(teamName: team?.team_name ?? "", teamImg: team?.team_logo ?? "")
             }
             return cell
 
         case 1:
+            let upcomingCount = getSectionCountBasedOnSport(sportType: presenter.getSportType()).1
+            if upcomingCount == 0 {
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: CellID.emptyCell.rawValue,
+                    for: indexPath
+                ) as! EmptyCollectionViewCell
+                cell.config(msg: "No upcoming events.")
+                return cell
+            }
+
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CellID.upcomingEventCell.rawValue,
                 for: indexPath
             ) as! UpcomingEventsCell
-
             cell.layer.cornerRadius = 16
-            
-            switch presenter?.getSportType() {
+
+            switch presenter.getSportType() {
             case .football:
                 let fixture = footballFixtures.1[indexPath.item]
                 cell.config(
@@ -365,7 +510,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     awayTeamImg: fixture.awayTeamLogo ?? "",
                     homeTeamImg: fixture.homeTeamLogo ?? ""
                 )
-
             case .basketball:
                 let fixture = basketballFixtures.1[indexPath.item]
                 cell.config(
@@ -376,7 +520,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     awayTeamImg: fixture.awayTeamLogo ?? "",
                     homeTeamImg: fixture.homeTeamLogo ?? ""
                 )
-
             case .tennis:
                 let fixture = tennisFixtures.1[indexPath.item]
                 cell.config(
@@ -387,7 +530,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     awayTeamImg: fixture.secondPlayerLogo ?? "",
                     homeTeamImg: fixture.firstPlayerLogo ?? ""
                 )
-
             case .cricket:
                 let fixture = cricketFixtures.1[indexPath.item]
                 cell.config(
@@ -398,21 +540,26 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     awayTeamImg: fixture.awayTeamLogo ?? "",
                     homeTeamImg: fixture.homeTeamLogo ?? ""
                 )
-
-            default:
-                break
             }
             return cell
 
         default:
+            let latestCount = getSectionCountBasedOnSport(sportType: presenter.getSportType()).0
+            if latestCount == 0 {
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: CellID.emptyCell.rawValue,
+                    for: indexPath
+                ) as! EmptyCollectionViewCell
+                cell.config(msg: "No latest events.")
+                return cell
+            }
+
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CellID.latestEventCell.rawValue,
                 for: indexPath
             ) as! LatestEventsCell
-//            cell.layer.cornerRadius = 16
 
-
-            switch presenter?.getSportType() {
+            switch presenter.getSportType() {
             case .football:
                 let fixture = footballFixtures.0[indexPath.item]
                 cell.config(
@@ -457,8 +604,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                     time: fixture.time ?? "",
                     date: fixture.dateStart ?? ""
                 )
-            default:
-                break
             }
             return cell
         }
@@ -469,11 +614,12 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         let nibUpcomingEvents = UINib(nibName: CellID.upcomingEventCell.rawValue, bundle: nil)
         let nibLatestEvents = UINib(nibName: CellID.latestEventCell.rawValue, bundle: nil)
         let nibTeams = UINib(nibName: CellID.teamCell.rawValue, bundle: nil)
+        let emptyCellsNib = UINib(nibName: "EmptyCollectionViewCell", bundle: nil)
         collectionView.register(nibUpcomingEvents, forCellWithReuseIdentifier: CellID.upcomingEventCell.rawValue)
         collectionView.register(nibLatestEvents, forCellWithReuseIdentifier: CellID.latestEventCell.rawValue)
         collectionView.register(nibTeams, forCellWithReuseIdentifier: CellID.teamCell.rawValue)
         collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: "separator-element-kind", withReuseIdentifier: "separator-id")
-
+        collectionView.register(emptyCellsNib, forCellWithReuseIdentifier: "EmptyCollectionViewCell")
     }
     
     
@@ -501,7 +647,7 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         }
         
         func showDeleteAlert() {
-            let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Unfavorite", message: "Are you sure you want to remove from favorites?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
                 self.presenter.deleteLeague(key: Int(self.currentLeague.league_key!))

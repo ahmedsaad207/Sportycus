@@ -81,7 +81,6 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
                         
                         let (old, upcoming) = self.filteredEvents(unFilteredList: footballRes.result ?? [])
                         
-                        print(old.count,upcoming.count)
                         self.view.displayData(data: (old,upcoming))
 
                     }
