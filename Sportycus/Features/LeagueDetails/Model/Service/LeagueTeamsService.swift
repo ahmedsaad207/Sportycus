@@ -16,8 +16,8 @@ class LeagueTeamsService : LeagueTeamsProtocol{
                 let res = try JSONDecoder().decode(TeamResponse.self, from: data)
                 //print(res)
                 completion(res)
-            } catch {
-                print(error.localizedDescription)
+            } catch  {
+                print("ERROR IN LEAGUE TEAMS: \(error.localizedDescription)")
                 completion(nil)
             }
         }.resume()

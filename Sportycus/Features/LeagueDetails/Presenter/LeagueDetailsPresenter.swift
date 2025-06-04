@@ -110,11 +110,16 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
     }
     
     private func getLeagueTeams(leagueId: Int, sportName: String){
-        LeagueTeamsService.getTeamsByLeagueId(completion: { teamResponse in
-
-            print("TEAM COUNT \(teamResponse?.result.count)")
-            self.view.displayTeam(team: teamResponse?.result ?? [])
-        }, leagueId: leagueId, sportName: sportName)
+        if sportName == "tennis"{
+            LeaguePlayersService.getPlayersByLeagueId(completion: { res in
+                self.view.displayPlayers(players: res?.result ?? [])
+                print("PLAYERS FROM PRESENTER \(res?.result ?? [])")
+            }, leagueId: leagueId, sportName: sportName)
+        }else{
+            LeagueTeamsService.getTeamsByLeagueId(completion: { teamResponse in
+                self.view.displayTeam(team: teamResponse?.result ?? [])
+            }, leagueId: leagueId, sportName: sportName)
+        }
     }
     
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class LatestEventsCell: UICollectionViewCell {
     
@@ -21,14 +22,52 @@ class LatestEventsCell: UICollectionViewCell {
         // Initialization code
     }
     
+
     func config(homeTeamName: String, awayTeamName:String, homeTeamImg:String, awayTeamImg:String, score:String, time:String, date:String){
         self.homeTeamName.text = homeTeamName
         self.awayTeamName.text = awayTeamName
-        self.awayTeamImg.kf.setImage(with: URL(string: awayTeamImg))
-        self.homeTeamImg.kf.setImage(with: URL(string: homeTeamImg))
         self.score.text = score
         self.time.text = time
         self.date.text = date
+        self.homeTeamImg.contentMode = .scaleAspectFit
+        self.awayTeamImg.contentMode = .scaleAspectFit
+        
+//        self.homeTeamImg.layer.cornerRadius = 22
+//        self.awayTeamImg.layer.cornerRadius = 22
+//        self.homeTeamImg.clipsToBounds = true
+//        self.awayTeamImg.clipsToBounds = true
+        
+        self.homeTeamImg.kf.setImage(with: URL(string: homeTeamImg), placeholder: UIImage(named: "player"))
+        self.awayTeamImg.kf.setImage(with: URL(string: awayTeamImg), placeholder: UIImage(named: "player"))
+//        if let homeUrl = URL(string: homeTeamImg) {
+//            homeTeamImg.kf.setImage(with: homeUrl, placeholder: UIImage(systemName: "photo"))
+//            
+//            KingfisherManager.shared.retrieveImage(with: homeUrl) { result in
+//                switch result {
+//                case .success(let value):
+////                    if let trimmed = value.image.trimmedTransparentPixels() {
+//                        self.homeTeamImg.image = value.image
+////                    }
+//                case .failure:
+//                    self.homeTeamImg.image = UIImage(systemName: "photo")
+//                }
+//            }
+//        }
+
+        if let awayUrl = URL(string: awayTeamImg) {
+            KingfisherManager.shared.retrieveImage(with: awayUrl) { result in
+                switch result {
+                case .success(let value):
+//                    if let trimmed = value.image.trimmedTransparentPixels() {
+                        self.awayTeamImg.image = value.image
+//                    }
+                case .failure:
+                    self.awayTeamImg.image = UIImage(systemName: "photo")
+                }
+            }
+        }
     }
 
+
 }
+

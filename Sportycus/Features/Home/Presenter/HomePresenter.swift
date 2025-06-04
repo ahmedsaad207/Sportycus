@@ -21,8 +21,8 @@ class HomePresenter: HomePresenterProtocol {
     private let sports: [Sport] = [
         Sport(sportTitle: SportType.football.rawValue, sportImage: "football"),
         Sport(sportTitle: SportType.basketball.rawValue, sportImage: "basketball"),
-        Sport(sportTitle: SportType.tennis.rawValue, sportImage: "tennis"),
-        Sport(sportTitle: SportType.cricket.rawValue, sportImage: "cricket")
+        Sport(sportTitle: SportType.tennis.rawValue, sportImage: "tennisball"),
+        Sport(sportTitle: SportType.cricket.rawValue, sportImage: "cricketball")
     ]
     
     init(view: HomeViewProtocol) {

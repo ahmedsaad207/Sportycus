@@ -12,12 +12,22 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Favorites Leagues"
+        setCollectionViewBackground()
+        setupAppBar()
         presenter = FavoritePresenter(vc: self)
         registerNibs()
         presenter.getLeagues()
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
+        
+        
+    }
+    
+    private func setCollectionViewBackground() {
+        let backgroundImage = UIImageView(frame: collectionView.bounds)
+        backgroundImage.image = UIImage(named: "bg")
+        backgroundImage.contentMode = .scaleAspectFill
+        collectionView.backgroundView = backgroundImage
     }
     
     func renderToView(data: [FavoriteLeague]) {
@@ -25,6 +35,21 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+    
+    func setupAppBar() {
+        self.navigationItem.title = "Favorites Leagues"
+
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
+        appearance.backgroundColor = AppColors.darkColor
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
     func registerNibs() {
@@ -43,6 +68,19 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if leagues.isEmpty {return 1} else {return leagues.count}
     }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+    }
+
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if leagues.isEmpty {
@@ -50,9 +88,14 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LeagueCell", for: indexPath) as! LeagueCell
+        cell.container.backgroundColor = AppColors.cardColor
         let league = leagues[indexPath.row]
         cell.leagueName.text = league.leagueName
         cell.leagueCountry.text = league.leagueCountry
+        cell.leagueName.textColor = .white
+        cell.leagueCountry.textColor = .gray
+        cell.container.layer.cornerRadius = 16
+        
         
         let placeholder = UIImage(systemName: "trophy.fill")?.withRenderingMode(.alwaysTemplate)
         cell.leagueLogo.tintColor = .gray
