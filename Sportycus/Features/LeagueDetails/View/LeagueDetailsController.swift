@@ -437,9 +437,6 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
                 )
             case .tennis:
                 let fixture = tennisFixtures.0[indexPath.item]
-                print(fixture.secondPlayer)
-                print(fixture.firstPlayerLogo)
-                print(fixture.secondPlayerLogo)
                 cell.config(
                     homeTeamName: fixture.firstPlayer ?? "",
                     awayTeamName: fixture.secondPlayer ?? "",
