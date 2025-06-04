@@ -6,32 +6,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        
-        // home
+        // Home
         let storyBoardHome = UIStoryboard(name: "Home", bundle: nil)
         let homeVC = storyBoardHome.instantiateViewController(withIdentifier: "home")
         let navHome = UINavigationController(rootViewController: homeVC)
         navHome.tabBarItem = UITabBarItem(title: "Sports", image: UIImage(systemName: "sportscourt.fill"), tag: 0)
-        
-        // favorite
+
+        // Favorite
         let storyBoardFavorite = UIStoryboard(name: "Favorite", bundle: nil)
         let favoriteVC = storyBoardFavorite.instantiateViewController(withIdentifier: "favorite")
-        let navFovrite = UINavigationController(rootViewController: favoriteVC)
-        navFovrite.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), tag: 0)
-        
-        // tab bar controller
+        let navFavorite = UINavigationController(rootViewController: favoriteVC)
+        navFavorite.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), tag: 1)
+
+        // Tab bar controller
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [navHome, navFovrite]
+        tabBarController.viewControllers = [navHome, navFavorite]
         
+        
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = AppColors.darkColor
+        
+        // Icon/text color
+        appearance.stackedLayoutAppearance.selected.iconColor = .white
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        appearance.stackedLayoutAppearance.normal.iconColor = .gray
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
+        
+        tabBarController.tabBar.standardAppearance = appearance
+        tabBarController.tabBar.scrollEdgeAppearance = appearance
+
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
-        
-        
     }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

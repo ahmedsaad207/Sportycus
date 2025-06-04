@@ -32,7 +32,7 @@ class LeagueDetailsService: LeagueDetailsServiceProtocol {
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 completion(nil)
-                print(error?.localizedDescription)
+                print("ERROR IN LEAGUE DETAILS: \(error?.localizedDescription)")
                 return
             }
             

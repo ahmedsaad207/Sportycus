@@ -21,13 +21,45 @@ class UpcomingEventsCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func config(time:String, date:String, homeName:String, awayName:String, awayTeamImg:String, homeTeamImg:String){
+    func config(time: String, date: String, homeName: String, awayName: String, awayTeamImg: String, homeTeamImg: String) {
         self.awayTeamName.text = awayName
         self.homeTeamName.text = homeName
         self.timeLabel.text = time
         self.dateLabel.text = date
-        self.awayTeamImg.kf.setImage(with: URL(string: awayTeamImg), placeholder: UIImage(systemName: "photo"))
-        self.homeTeamImg.kf.setImage(with: URL(string: homeTeamImg), placeholder: UIImage(systemName: "photo"))
+
+        self.awayTeamImg.contentMode = .scaleAspectFit
+        self.homeTeamImg.contentMode = .scaleAspectFit
+//        self.awayTeamImg.layer.cornerRadius = 22
+//        self.homeTeamImg.layer.cornerRadius = 22
+//        self.awayTeamImg.clipsToBounds = true
+//        self.homeTeamImg.clipsToBounds = true
+
+        if let awayUrl = URL(string: awayTeamImg) {
+            KingfisherManager.shared.retrieveImage(with: awayUrl) { result in
+                switch result {
+                case .success(let value):
+//                    if let trimmed = value.image.trimmedTransparentPixels() {
+                        self.awayTeamImg.image = value.image
+//                    }
+                case .failure:
+                    self.awayTeamImg.image = UIImage(systemName: "photo")
+                }
+            }
+        }
+
+        if let homeUrl = URL(string: homeTeamImg) {
+            KingfisherManager.shared.retrieveImage(with: homeUrl) { result in
+                switch result {
+                case .success(let value):
+//                    if let trimmed = value.image.trimmedTransparentPixels() {
+                        self.homeTeamImg.image = value.image
+//                    }
+                case .failure:
+                    self.homeTeamImg.image = UIImage(systemName: "player")
+                }
+            }
+        }
     }
+
 
 }

@@ -19,6 +19,11 @@ class SportCell: UICollectionViewCell {
     func config(imgName:String, title:String){
         img.image = UIImage(named: imgName)
         sportTitle.text = title
+        let angleInDegrees: CGFloat = -10
+        let angleInRadians = angleInDegrees * .pi / 180
+
+        sportTitle.transform = CGAffineTransform(rotationAngle: angleInRadians)
+
     }
 
 }
