@@ -10,6 +10,12 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
     var presenter: FavoritePresenterProtocol!
     var leagues: [FavoriteLeague] = []
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        presenter.getLeagues()
+        collectionView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionViewBackground()
@@ -19,9 +25,7 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
         presenter.getLeagues()
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
-        
-        
-    }
+        }
     
     private func setCollectionViewBackground() {
         let backgroundImage = UIImageView(frame: collectionView.bounds)
@@ -96,8 +100,7 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
         cell.leagueName.textColor = .white
         cell.leagueCountry.textColor = .gray
         cell.container.layer.cornerRadius = 16
-        
-        
+                
         let placeholder = UIImage(systemName: "trophy.fill")?.withRenderingMode(.alwaysTemplate)
         cell.leagueLogo.tintColor = .gray
         cell.leagueLogo.kf.setImage(with: URL(string: league.leagueLogo ?? ""), placeholder: placeholder)
@@ -106,6 +109,15 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
 
         override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if leagues.isEmpty {return}
+        let league = leagues[indexPath.row]
+        let storyBoardLeagueDetails = UIStoryboard(name: "LeagueDetails", bundle: nil)
+        let leagueDetailsVC = storyBoardLeagueDetails.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsController
+        leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: SportType(rawValue: league.sportType!)!, league: mapFavoriteLeagueToLeague(league))
+        navigationController?.pushViewController(leagueDetailsVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -133,18 +145,8 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
         present(alert, animated: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        presenter.getLeagues()
-        collectionView.reloadData()
-    }
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if leagues.isEmpty {return}
-        let league = leagues[indexPath.row]
-        let storyBoardLeagueDetails = UIStoryboard(name: "LeagueDetails", bundle: nil)
-        let leagueDetailsVC = storyBoardLeagueDetails.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsController
-        leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: SportType(rawValue: league.sportType!)!, league: mapFavoriteLeagueToLeague(league))
-        navigationController?.pushViewController(leagueDetailsVC, animated: true)
-    }
+
+
 
 }
