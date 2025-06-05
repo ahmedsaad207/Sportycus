@@ -493,9 +493,9 @@ class LeagueDetailsController: UICollectionViewController , LeagueDetailsViewPro
         if indexPath.section == 0 {
             let teamStoryBoard = UIStoryboard(name: "Team", bundle: nil)
             let teamVC = teamStoryBoard.instantiateViewController(identifier: "team") as! TeamController
-            teamVC.teamKey = teamList?[indexPath.row].team_key ?? 0
-            teamVC.leagueId = self.currentLeague.league_key
-            teamVC.presenter = TeamPresenter(vc: teamVC, sportType: presenter.getSportType())
+            let teamKey = teamList?[indexPath.row].team_key ?? 0
+            let leagueId = self.currentLeague.league_key!
+            teamVC.presenter = TeamPresenter(vc: teamVC, sportType: presenter.getSportType(), teamKey: teamKey, leagueId: leagueId)
             self.navigationController?.pushViewController(teamVC, animated: true)
         }
     }

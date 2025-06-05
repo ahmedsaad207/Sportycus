@@ -7,25 +7,22 @@ protocol TeamViewProtocol {
 
 class TeamController: UITableViewController, TeamViewProtocol {
     
-   
-    
     var sportType: SportType!
-    var team: Team = Team()
-//    var loadingView = LoadingIndicatorView()
-    var leagueId: Int!
-//    var sportName: String!
-    var teamKey: Int!
-    
+    var team = Team()
     var presenter: TeamPresenter!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadingView.show(in:view)
+        setupAppbar()
         setBackgroundImage()
+        registerNibs()
+    }
+    
+    func setupAppbar(){
         title = "Team Info"
-        
-        // register nib cell
+    }
+    
+    func registerNibs(){
         let nibTeam = UINib(nibName: "TeamInfoCell", bundle: nil)
         tableView.register(nibTeam, forCellReuseIdentifier: "teamInfoCell")
         
@@ -34,7 +31,6 @@ class TeamController: UITableViewController, TeamViewProtocol {
         
         let nibEmpty = UINib(nibName: "EmptyTableViewCell", bundle: nil)
         tableView.register(nibEmpty, forCellReuseIdentifier: "EmptyTableViewCell")
-        self.presenter.getTeam(sport: sportType.path,teamKey: teamKey, leagueId: leagueId)
     }
 
     func setBackgroundImage() {
@@ -57,7 +53,6 @@ class TeamController: UITableViewController, TeamViewProtocol {
         team = response.result[0]
         DispatchQueue.main.async {
             self.tableView.reloadData()
-//            self.loadingView.hide()
         }
     }
 
@@ -131,7 +126,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
             let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as! EmptyTableViewCell
                 emptyCell.playerLabel.text = "No Coaches Found"
                 return emptyCell
-        } else if (indexPath.section == 2 && coachesEmpty) {
+        } else if (indexPath.section == 2 && playersEmpty) {
             let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as! EmptyTableViewCell
                 emptyCell.playerLabel.text = "No Players Found"
                 return emptyCell
