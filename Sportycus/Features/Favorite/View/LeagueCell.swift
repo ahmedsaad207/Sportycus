@@ -11,4 +11,15 @@ class LeagueCell: UICollectionViewCell {
         // Initialization code
     }
 
+    func bind(_ league: FavoriteLeague) {
+        container.backgroundColor = AppColors.cardColor
+        leagueName.text = league.leagueName
+        leagueCountry.text = league.leagueCountry
+        leagueName.textColor = .white
+        leagueCountry.textColor = .gray
+        container.layer.cornerRadius = 16
+        let placeholder = UIImage(systemName: "trophy.fill")?.withRenderingMode(.alwaysTemplate)
+        leagueLogo.tintColor = .gray
+        leagueLogo.kf.setImage(with: URL(string: league.leagueLogo ?? ""), placeholder: placeholder)
+    }
 }

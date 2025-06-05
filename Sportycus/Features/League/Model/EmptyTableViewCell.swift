@@ -15,4 +15,9 @@ class EmptyTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func bind(_ message: String) {
+        playerLabel.text = message
+    }
+
+    
 }

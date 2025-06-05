@@ -24,6 +24,10 @@ class NetworkMonitor {
         }
     }
 
+    func isConnected() -> Bool {
+        return reachability?.connection != .unavailable
+    }
+
     deinit {
         reachability?.stopNotifier()
     }

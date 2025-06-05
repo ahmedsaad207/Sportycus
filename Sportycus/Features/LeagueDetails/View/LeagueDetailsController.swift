@@ -39,13 +39,17 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
         registerNibs()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        presenter.checkFavoriteStatus()
+    }
+    
     func setBackgroundImage() {
         let backgroundImage = UIImage(named: "bg")
         let backgroundImageView = UIImageView(image: backgroundImage)
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundView = backgroundImageView
-
+        
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: collectionView.topAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor),
@@ -105,11 +109,11 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
     }
     
     func showLoadingIndicator() {
-        // Show loading indicator
+        showIndicator()
     }
     
     func hideLoadingIndicator() {
-        // Hide loading indicator
+        hideIndicator()
     }
     
     func showError(message: String) {
@@ -158,7 +162,7 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
         section.visibleItemsInvalidationHandler = { (items, offset, environment) in
             items.forEach { item in
                 guard item.representedElementCategory == .cell else { return }
-
+                
                 let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2)
                 let minScale: CGFloat = 0.87
                 let maxScale: CGFloat = 1.05
@@ -183,7 +187,7 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
         )
-
+        
         let separatorSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .absolute(1)
@@ -193,12 +197,12 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
             elementKind: "separator-element-kind",
             containerAnchor: NSCollectionLayoutAnchor(edges: [.bottom], fractionalOffset: .zero)
         )
-
+        
         let item = NSCollectionLayoutItem(
             layoutSize: itemSize,
             supplementaryItems: [separator]
         )
-
+        
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .absolute(190)
@@ -208,10 +212,10 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
             subitems: [item]
         )
         group.contentInsets = .zero
-
+        
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = .zero
-
+        
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .absolute(40)
@@ -224,7 +228,7 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
         
         sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0)
         section.boundarySupplementaryItems = [sectionHeader]
-
+        
         return section
     }
     
@@ -249,15 +253,15 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
         present(alert, animated: true)
     }
     
-   
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return presenter.numberOfSections()
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.numberOfItems(section: section)
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
@@ -304,7 +308,7 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
                 withReuseIdentifier: CellID.sectionHeader.rawValue,
                 for: indexPath
             ) as! HeaderCollectionReusableView
-
+            
             header.headerLabel.textColor = .white
             header.headerLabel.text = presenter.getSectionTitle(section: indexPath.section)
             return header
@@ -317,13 +321,17 @@ class LeagueDetailsController: UICollectionViewController, LeagueDetailsViewProt
             separatorView.backgroundColor = .lightGray
             return separatorView
         }
-
+        
         return UICollectionReusableView()
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 && !presenter.shouldShowEmptyState(section: 0) {
-            presenter.didSelectTeam(index: indexPath.item, navigationController: self.navigationController!)
+            if NetworkMonitor.shared.isConnected() {
+                presenter.didSelectTeam(index: indexPath.item, navigationController: self.navigationController!)
+            } else {
+                showNetworkUnavailableAlert()
+            }
         }
     }
 }

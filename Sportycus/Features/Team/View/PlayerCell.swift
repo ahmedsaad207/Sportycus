@@ -14,8 +14,24 @@ class PlayerCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func bindPlayer(_ player: Player) {
+        bg.backgroundColor = AppColors.navyColor.withAlphaComponent(0.6)
+        playerName.text = player.player_name
+        if let number = player.player_number {
+            playerNumber.text = number.isEmpty ? "" : "#\(number)"
+        }
+        playerPosition.text = player.player_type
 
-        // Configure the view for the selected state
+        let placeholder = UIImage(named: "player")
+        playerImage.kf.setImage(with: URL(string: player.player_image ?? ""), placeholder: placeholder)
+    }
+    
+    func bindCoach(_ coach: Coach) {
+        bg.backgroundColor = AppColors.navyColor.withAlphaComponent(0.6)
+        playerName.text = coach.coach_name
+        playerPosition.text = "Coach"
     }
     
 }
