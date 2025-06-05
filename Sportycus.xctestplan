@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "4E732B7F-8441-4994-BC59-C316CEE86B19",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Sportycus.xcodeproj",
+      "identifier" : "C5CD0B7C2DE87D6700273B03",
+      "name" : "Sportycus"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Sportycus.xcodeproj",
+        "identifier" : "C5B19BAB2DF21FB900C483A0",
+        "name" : "SportycusTests"
+      }
+    }
+  ],
+  "version" : 1
+}
