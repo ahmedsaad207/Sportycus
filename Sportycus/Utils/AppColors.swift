@@ -10,6 +10,7 @@ import UIKit
 
 class AppColors {
     static let darkColor = UIColor(hex: "171C25")!
+    static let navyColor = UIColor(hex: "1F2229")!
     static let cardColor = UIColor(hex: "2D3547")!
 
 

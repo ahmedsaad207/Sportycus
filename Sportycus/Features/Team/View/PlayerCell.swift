@@ -2,6 +2,7 @@ import UIKit
 
 class PlayerCell: UITableViewCell {
 
+    @IBOutlet weak var bg: UIView!
     @IBOutlet weak var playerImage: UIImageView!
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var playerPosition: UILabel!

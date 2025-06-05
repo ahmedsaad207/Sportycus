@@ -5,10 +5,16 @@ protocol TeamPresenterProtocol {
 }
 
 class TeamPresenter : TeamPresenterProtocol{
-    var vc:TeamViewProtocol!
     
-    init(vc: TeamViewProtocol!) {
+    var vc:TeamViewProtocol!
+    var sportType: SportType!
+        
+    init(vc: TeamViewProtocol!, sportType: SportType, teamKey:Int, leagueId: Int) {
         self.vc = vc
+        self.sportType = sportType
+        
+        self.vc.sport(sportType: sportType)
+        getTeam(sport: sportType.path, teamKey: teamKey, leagueId: leagueId)
     }
     
     func getTeam(sport: String, teamKey: Int, leagueId: Int) {

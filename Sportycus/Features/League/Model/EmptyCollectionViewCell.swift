@@ -10,6 +10,7 @@ import Lottie
 
 class EmptyCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var msg: UILabel!
     @IBOutlet weak var animationView: LottieAnimationView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +28,10 @@ class EmptyCollectionViewCell: UICollectionViewCell {
          
          // 4. Play animation
          animationView.play()
+    }
+    
+    func config(msg:String){
+        self.msg.text = msg
     }
 
 }

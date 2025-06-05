@@ -9,12 +9,14 @@ import UIKit
 import Kingfisher
 class TeamsCell: UICollectionViewCell {
 
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamImg: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
     
     func config(teamName: String, teamImg: String) {
         self.teamName.text = teamName
