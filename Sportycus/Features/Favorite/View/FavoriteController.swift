@@ -25,7 +25,8 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
         presenter.getLeagues()
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
-        }
+        showIndicator()
+    }
     
     private func setCollectionViewBackground() {
         let backgroundImage = UIImageView(frame: collectionView.bounds)
@@ -37,6 +38,7 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
     func renderToView(data: [FavoriteLeague]) {
         leagues = data
         DispatchQueue.main.async {
+            self.hideIndicator()
             self.collectionView.reloadData()
         }
     }
@@ -93,17 +95,7 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LeagueCell", for: indexPath) as! LeagueCell
-        cell.container.backgroundColor = AppColors.cardColor
-        let league = leagues[indexPath.row]
-        cell.leagueName.text = league.leagueName
-        cell.leagueCountry.text = league.leagueCountry
-        cell.leagueName.textColor = .white
-        cell.leagueCountry.textColor = .gray
-        cell.container.layer.cornerRadius = 16
-                
-        let placeholder = UIImage(systemName: "trophy.fill")?.withRenderingMode(.alwaysTemplate)
-        cell.leagueLogo.tintColor = .gray
-        cell.leagueLogo.kf.setImage(with: URL(string: league.leagueLogo ?? ""), placeholder: placeholder)
+        cell.bind(leagues[indexPath.row])
         return cell
     }
 
@@ -112,12 +104,16 @@ class FavoriteController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if leagues.isEmpty {return}
-        let league = leagues[indexPath.row]
-        let storyBoardLeagueDetails = UIStoryboard(name: "LeagueDetails", bundle: nil)
-        let leagueDetailsVC = storyBoardLeagueDetails.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsController
-        leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: SportType(rawValue: league.sportType!)!, league: mapFavoriteLeagueToLeague(league))
-        navigationController?.pushViewController(leagueDetailsVC, animated: true)
+            if NetworkMonitor.shared.isConnected() {
+                if leagues.isEmpty {return}
+                let league = leagues[indexPath.row]
+                let storyBoardLeagueDetails = UIStoryboard(name: "LeagueDetails", bundle: nil)
+                let leagueDetailsVC = storyBoardLeagueDetails.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsController
+                leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: SportType(rawValue: league.sportType!)!, league: mapFavoriteLeagueToLeague(league))
+                navigationController?.pushViewController(leagueDetailsVC, animated: true)
+            } else {
+                self.showNetworkUnavailableAlert()
+            }
     }
     
     func collectionView(_ collectionView: UICollectionView,

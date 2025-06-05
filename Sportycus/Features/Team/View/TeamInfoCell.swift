@@ -30,5 +30,13 @@ class TeamInfoCell: UITableViewCell {
         }
     }
     
+    func bindTeamDetails(team: Team, sportType: SportType) {
+        teamName.text = team.team_name
+        config(sportType: sportType)
+        let placeholder = UIImage(systemName: "shield.fill")?.withRenderingMode(.alwaysTemplate)
+        teamLogo.tintColor = .gray
+        teamLogo.kf.setImage(with: URL(string: team.team_logo ?? ""), placeholder: placeholder)
+    }
+    
     
 }

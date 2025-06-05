@@ -13,6 +13,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showIndicator()
         setupAppbar()
         setBackgroundImage()
         registerNibs()
@@ -52,6 +53,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
     func renderToView(response: TeamResponse) {
         team = response.result[0]
         DispatchQueue.main.async {
+            self.hideIndicator()
             self.tableView.reloadData()
         }
     }
@@ -111,11 +113,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
         // team information
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "teamInfoCell", for: indexPath) as! TeamInfoCell
-            cell.teamName.text = team.team_name
-            cell.config(sportType: sportType)
-            let placeholder = UIImage(systemName: "shield.fill")?.withRenderingMode(.alwaysTemplate)
-            cell.teamLogo.tintColor = .gray
-            cell.teamLogo.kf.setImage(with: URL(string: team.team_logo ?? ""), placeholder: placeholder)
+            cell.bindTeamDetails(team: team, sportType: sportType)
             return cell
         }
         
@@ -124,32 +122,22 @@ class TeamController: UITableViewController, TeamViewProtocol {
         
         if (indexPath.section == 1 && coachesEmpty) {
             let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as! EmptyTableViewCell
-                emptyCell.playerLabel.text = "No Coaches Found"
+                emptyCell.bind("No Coaches Found")
                 return emptyCell
         } else if (indexPath.section == 2 && playersEmpty) {
             let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as! EmptyTableViewCell
-                emptyCell.playerLabel.text = "No Players Found"
+                emptyCell.bind("No Players Found")
                 return emptyCell
         }
         
         // data
         let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath) as! PlayerCell
-        cell.bg.backgroundColor = AppColors.navyColor.withAlphaComponent(0.6)
-
         switch indexPath.section {
             case 1:
-                let coach = team.coaches![indexPath.row]
-                cell.playerName.text = coach.coach_name
-                cell.playerPosition.text = "Coach"
+                cell.bindCoach(team.coaches![indexPath.row])
                 break
             case 2:
-                let player = team.players![indexPath.row]
-                cell.playerName.text = player.player_name
-                cell.playerNumber.text = "#\(player.player_number ?? "0")"
-                cell.playerPosition.text = player.player_type
-            
-                let placeholder = UIImage(named: "player")
-                cell.playerImage.kf.setImage(with: URL(string: player.player_image ?? ""), placeholder: placeholder)
+                cell.bindPlayer(team.players![indexPath.row])
             default: cell.playerName.text = ""
         }
         return cell

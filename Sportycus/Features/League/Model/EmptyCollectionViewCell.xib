@@ -52,6 +52,9 @@
             <point key="canvasLocation" x="246.56488549618319" y="-30.281690140845072"/>
         </collectionViewCell>
     </objects>
+    <designables>
+        <designable name="iCu-z8-xt8"/>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

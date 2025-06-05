@@ -22,6 +22,7 @@ protocol LeagueDetailsPresenterProtocol {
     func shouldShowEmptyState(section: Int) -> Bool
     func getSectionTitle(section: Int) -> String
     func upcomingListCount()->Int
+    func checkFavoriteStatus()
     }
 
 class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
@@ -42,7 +43,7 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
 
     init(view: LeagueDetailsViewProtocol,
          sportType: SportType,
-         league: League,
+         league: League
          ) {
         self.view = view
         self.league = league
@@ -57,7 +58,7 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
         fetchLeagueDetails()
     }
     
-    private func checkFavoriteStatus() {
+    func checkFavoriteStatus() {
         guard let leagueKey = league.league_key else { return }
         isFavorite = localDataSource.isLeagueExist(leagueKey: leagueKey)
         DispatchQueue.main.async {

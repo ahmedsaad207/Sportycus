@@ -9,7 +9,6 @@ protocol LeagueViewProtocol {
 class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
     
     var presenter: LeaguePresenterProtocol!
-    var networkIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +17,7 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
     }
     
     private func setupUI() {
+        showIndicator()
         registerNibs()
         setTableViewBackground()
         setupAppBar()
@@ -26,11 +26,6 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.rowHeight = 120
-        
-        networkIndicator = UIActivityIndicatorView()
-        networkIndicator.center = view.center
-        view.addSubview(networkIndicator)
-        networkIndicator.startAnimating()
     }
     
     private func registerNibs() {
@@ -50,8 +45,8 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
     }
     
     func renderToView(data: [League]) {
+        hideIndicator()
         tableView.reloadData()
-        networkIndicator.stopAnimating()
     }
     
     
@@ -83,11 +78,16 @@ class LeagueTableViewController: UITableViewController, LeagueViewProtocol {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let league = presenter.league(at: indexPath.row)
-        let storyboard = UIStoryboard(name: "LeagueDetails", bundle: nil)
-        let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsController
-        leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: presenter.getSportType(), league: league)
-        navigationController?.pushViewController(leagueDetailsVC, animated: true)
+        if NetworkMonitor.shared.isConnected() {
+            let league = presenter.league(at: indexPath.row)
+            let storyboard = UIStoryboard(name: "LeagueDetails", bundle: nil)
+            let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "LeagueDetails") as! LeagueDetailsController
+            leagueDetailsVC.presenter = LeagueDetailsPresenter(view: leagueDetailsVC, sportType: presenter.getSportType(), league: league)
+            navigationController?.pushViewController(leagueDetailsVC, animated: true)
+        } else {
+            showNetworkUnavailableAlert()
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
