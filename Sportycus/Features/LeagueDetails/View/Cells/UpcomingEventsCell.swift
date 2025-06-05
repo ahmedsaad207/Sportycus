@@ -10,6 +10,7 @@ import Kingfisher
 
 class UpcomingEventsCell: UICollectionViewCell {
 
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var homeTeamName: UILabel!
@@ -22,6 +23,8 @@ class UpcomingEventsCell: UICollectionViewCell {
     }
     
     func config(time: String, date: String, homeName: String, awayName: String, awayTeamImg: String, homeTeamImg: String) {
+        
+        self.container.backgroundColor = AppColors.navyColor.withAlphaComponent(0.8)
         self.awayTeamName.text = awayName
         self.homeTeamName.text = homeName
         self.timeLabel.text = time
@@ -29,20 +32,14 @@ class UpcomingEventsCell: UICollectionViewCell {
 
         self.awayTeamImg.contentMode = .scaleAspectFit
         self.homeTeamImg.contentMode = .scaleAspectFit
-//        self.awayTeamImg.layer.cornerRadius = 22
-//        self.homeTeamImg.layer.cornerRadius = 22
-//        self.awayTeamImg.clipsToBounds = true
-//        self.homeTeamImg.clipsToBounds = true
 
         if let awayUrl = URL(string: awayTeamImg) {
             KingfisherManager.shared.retrieveImage(with: awayUrl) { result in
                 switch result {
                 case .success(let value):
-//                    if let trimmed = value.image.trimmedTransparentPixels() {
                         self.awayTeamImg.image = value.image
-//                    }
                 case .failure:
-                    self.awayTeamImg.image = UIImage(systemName: "photo")
+                    self.awayTeamImg.image = UIImage(named: "player")
                 }
             }
         }
@@ -51,11 +48,9 @@ class UpcomingEventsCell: UICollectionViewCell {
             KingfisherManager.shared.retrieveImage(with: homeUrl) { result in
                 switch result {
                 case .success(let value):
-//                    if let trimmed = value.image.trimmedTransparentPixels() {
                         self.homeTeamImg.image = value.image
-//                    }
                 case .failure:
-                    self.homeTeamImg.image = UIImage(systemName: "player")
+                    self.homeTeamImg.image = UIImage(named: "player")
                 }
             }
         }

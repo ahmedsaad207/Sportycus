@@ -85,8 +85,6 @@
 
 /* Begin PBXFileReference section */
 		AD7E294B4C4837C4E1171A69 /* Pods_Sportycus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sportycus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C501CF762DEB3B710015F4D8 /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
-		C501CF782DEB3B960015F4D8 /* SportCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SportCell.xib; sourceTree = "<group>"; };
 		C50BC4582DEB398000714A46 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		C5175FD12DEB8BA500E90B75 /* LeagueTeamsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueTeamsService.swift; sourceTree = "<group>"; };
 		C5175FD52DEB9B6800E90B75 /* LeagueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueCell.swift; sourceTree = "<group>"; };
@@ -219,12 +217,12 @@
 			isa = PBXGroup;
 			children = (
 				C5312C8A2DEB5EB100144FE1 /* Service */,
-				C5B1E0E62DEBD5FC008FF1AF /* local */,
-				C5312C862DEB5EB100144FE1 /* ChricketDetailsResponse.swift */,
+				C5B1E0E62DEBD5FC008FF1AF /* Local */,
+				C5312C892DEB5EB100144FE1 /* Response.swift */,
 				C5312C872DEB5EB100144FE1 /* FootballDetailsResponse.swift */,
 				C5312C8C2DEB5EB100144FE1 /* BasketBallDetailsResponse.swift */,
 				C5312C882DEB5EB100144FE1 /* TennisDetailsResponse.swift */,
-				C5312C892DEB5EB100144FE1 /* Response.swift */,
+				C5312C862DEB5EB100144FE1 /* ChricketDetailsResponse.swift */,
 				F07CB8942DEFBADD00B9DE31 /* PlayerResponse.swift */,
 			);
 			path = Model;
@@ -244,9 +242,9 @@
 			isa = PBXGroup;
 			children = (
 				C5312C8E2DEB5EB100144FE1 /* Cells */,
-				C5312C952DEB5EB100144FE1 /* LeagueDetails.storyboard */,
 				C5312C962DEB5EB100144FE1 /* LeagueDetailsController.swift */,
 				F0642BBA2DEC99A00025EDDB /* HeaderCollectionReusableView.swift */,
+				C5312C952DEB5EB100144FE1 /* LeagueDetails.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -308,8 +306,6 @@
 		C53F7C7B2DE8901F003B4AAE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C501CF782DEB3B960015F4D8 /* SportCell.xib */,
-				C501CF762DEB3B710015F4D8 /* SportCell.swift */,
 				C50BC4582DEB398000714A46 /* Sport.swift */,
 			);
 			path = Model;
@@ -319,8 +315,8 @@
 			isa = PBXGroup;
 			children = (
 				C5E52C202DEB3511009222B8 /* HomeCollectionViewController.swift */,
-				C56F6B322DE8F5A000FEAC71 /* Home.storyboard */,
 				C5DEC0C22DEB55AC000A555F /* SportCell.swift */,
+				C56F6B322DE8F5A000FEAC71 /* Home.storyboard */,
 				C5DEC0C32DEB55AC000A555F /* SportCell.xib */,
 			);
 			path = View;
@@ -358,7 +354,7 @@
 		C56F6B2D2DE8F40600FEAC71 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C5175FD92DEBA18100E90B75 /* FavoriteLocalDataSource.swift */,
+				F0A883E02DF1A17400304FB4 /* Local */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,9 +362,9 @@
 		C56F6B2E2DE8F40B00FEAC71 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C56F6B302DE8F44000FEAC71 /* Favorite.storyboard */,
 				C56F6B362DE8F9EA00FEAC71 /* FavoriteController.swift */,
 				C5175FD52DEB9B6800E90B75 /* LeagueCell.swift */,
+				C56F6B302DE8F44000FEAC71 /* Favorite.storyboard */,
 				C5175FD62DEB9B6800E90B75 /* LeagueCell.xib */,
 			);
 			path = View;
@@ -406,9 +402,9 @@
 		C56F6B3A2DE9096300FEAC71 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C56F6B442DE90D3600FEAC71 /* League.storyboard */,
 				C56F6B462DE90D8500FEAC71 /* LeagueTableViewController.swift */,
 				C56F6B4A2DE9159B00FEAC71 /* LeagueTableViewCell.swift */,
+				C56F6B442DE90D3600FEAC71 /* League.storyboard */,
 				C56F6B4B2DE9159B00FEAC71 /* LeagueTableViewCell.xib */,
 			);
 			path = View;
@@ -444,8 +440,8 @@
 			isa = PBXGroup;
 			children = (
 				C58C96B12DEB51C5004AC92D /* Service */,
-				C58C96AE2DEB51A0004AC92D /* Coach.swift */,
 				C56F6B522DE92A9500FEAC71 /* TeamResponse.swift */,
+				C58C96AE2DEB51A0004AC92D /* Coach.swift */,
 				C56F6B542DE92B0400FEAC71 /* Team.swift */,
 				C56F6B562DE92B5900FEAC71 /* Player.swift */,
 			);
@@ -455,12 +451,12 @@
 		C56F6B502DE9291300FEAC71 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C58C96A92DEB514E004AC92D /* PlayerCell.xib */,
-				C58C96A82DEB514E004AC92D /* TeamInfoCell.xib */,
-				C58C96A22DEB5134004AC92D /* PlayerCell.swift */,
 				C58C96A32DEB5134004AC92D /* TeamController.swift */,
 				C58C96A42DEB5134004AC92D /* TeamInfoCell.swift */,
+				C58C96A22DEB5134004AC92D /* PlayerCell.swift */,
 				C56F6B582DE92E8C00FEAC71 /* Team.storyboard */,
+				C58C96A92DEB514E004AC92D /* PlayerCell.xib */,
+				C58C96A82DEB514E004AC92D /* TeamInfoCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -481,12 +477,12 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		C5B1E0E62DEBD5FC008FF1AF /* local */ = {
+		C5B1E0E62DEBD5FC008FF1AF /* Local */ = {
 			isa = PBXGroup;
 			children = (
 				C5175FDB2DEBA1AF00E90B75 /* LeagueLocalDataSource.swift */,
 			);
-			path = local;
+			path = Local;
 			sourceTree = "<group>";
 		};
 		C5CD0B742DE87D6700273B03 = {
@@ -551,6 +547,14 @@
 				C59505902DEF20560084B5FF /* NetworkMonitor.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		F0A883E02DF1A17400304FB4 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				C5175FD92DEBA18100E90B75 /* FavoriteLocalDataSource.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -667,9 +671,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sportycus/Pods-Sportycus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sportycus/Pods-Sportycus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
