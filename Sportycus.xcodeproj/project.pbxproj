@@ -62,6 +62,7 @@
 		C5B14D942DF2009D00196B94 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B14D932DF2009D00196B94 /* Extensions.swift */; };
 		C5B19BA72DF2167500C483A0 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = C5B19BA62DF2167500C483A0 /* empty.json */; };
 		C5B1E0E52DEBC7FC008FF1AF /* LeagueData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C5B1E0E32DEBC7FC008FF1AF /* LeagueData.xcdatamodeld */; };
+		C5B994FC2DF270A50053E012 /* SportycusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B994FB2DF270A50053E012 /* SportycusTests.swift */; };
 		C5CD0B812DE87D6700273B03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD0B802DE87D6700273B03 /* AppDelegate.swift */; };
 		C5CD0B832DE87D6700273B03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD0B822DE87D6700273B03 /* SceneDelegate.swift */; };
 		C5CD0B8A2DE87D6B00273B03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CD0B892DE87D6B00273B03 /* Assets.xcassets */; };
@@ -83,6 +84,16 @@
 		F0A92D702DEE6782004594E3 /* PngFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A92D6F2DEE6782004594E3 /* PngFixer.swift */; };
 		F0FB65E32DEF297C008AD43D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FB65E22DEF297C008AD43D /* AppColors.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C5B994FD2DF270A50053E012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C5CD0B752DE87D6700273B03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C5CD0B7C2DE87D6700273B03;
+			remoteInfo = Sportycus;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AD7E294B4C4837C4E1171A69 /* Pods_Sportycus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sportycus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +152,8 @@
 		C5B14D932DF2009D00196B94 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C5B19BA62DF2167500C483A0 /* empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		C5B1E0E42DEBC7FC008FF1AF /* LeagueData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LeagueData.xcdatamodel; sourceTree = "<group>"; };
+		C5B994F92DF270A50053E012 /* SportycusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportycusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5B994FB2DF270A50053E012 /* SportycusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportycusTests.swift; sourceTree = "<group>"; };
 		C5CD0B7D2DE87D6700273B03 /* Sportycus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportycus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CD0B802DE87D6700273B03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5CD0B822DE87D6700273B03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +180,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C5B994F62DF270A50053E012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C5CD0B7A2DE87D6700273B03 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,10 +507,19 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
+		C5B994FA2DF270A50053E012 /* SportycusTests */ = {
+			isa = PBXGroup;
+			children = (
+				C5B994FB2DF270A50053E012 /* SportycusTests.swift */,
+			);
+			path = SportycusTests;
+			sourceTree = "<group>";
+		};
 		C5CD0B742DE87D6700273B03 = {
 			isa = PBXGroup;
 			children = (
 				C5CD0B7F2DE87D6700273B03 /* Sportycus */,
+				C5B994FA2DF270A50053E012 /* SportycusTests */,
 				C5CD0B7E2DE87D6700273B03 /* Products */,
 				CC05763EDF6520B30C083543 /* Pods */,
 				A993C15461B6F799BFBD80EA /* Frameworks */,
@@ -501,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				C5CD0B7D2DE87D6700273B03 /* Sportycus.app */,
+				C5B994F92DF270A50053E012 /* SportycusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -563,6 +593,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C5B994F82DF270A50053E012 /* SportycusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5B995012DF270A50053E012 /* Build configuration list for PBXNativeTarget "SportycusTests" */;
+			buildPhases = (
+				C5B994F52DF270A50053E012 /* Sources */,
+				C5B994F62DF270A50053E012 /* Frameworks */,
+				C5B994F72DF270A50053E012 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C5B994FE2DF270A50053E012 /* PBXTargetDependency */,
+			);
+			name = SportycusTests;
+			productName = SportycusTests;
+			productReference = C5B994F92DF270A50053E012 /* SportycusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C5CD0B7C2DE87D6700273B03 /* Sportycus */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5CD0B912DE87D6B00273B03 /* Build configuration list for PBXNativeTarget "Sportycus" */;
@@ -592,6 +640,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					C5B994F82DF270A50053E012 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = C5CD0B7C2DE87D6700273B03;
+					};
 					C5CD0B7C2DE87D6700273B03 = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -611,11 +663,19 @@
 			projectRoot = "";
 			targets = (
 				C5CD0B7C2DE87D6700273B03 /* Sportycus */,
+				C5B994F82DF270A50053E012 /* SportycusTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C5B994F72DF270A50053E012 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C5CD0B7B2DE87D6700273B03 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -690,6 +750,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C5B994F52DF270A50053E012 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B994FC2DF270A50053E012 /* SportycusTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C5CD0B792DE87D6700273B03 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -757,6 +825,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C5B994FE2DF270A50053E012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C5CD0B7C2DE87D6700273B03 /* Sportycus */;
+			targetProxy = C5B994FD2DF270A50053E012 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		C5CD0B8B2DE87D6B00273B03 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -769,6 +845,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C5B994FF2DF270A50053E012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delighted2wins.SportycusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sportycus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sportycus";
+			};
+			name = Debug;
+		};
+		C5B995002DF270A50053E012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delighted2wins.SportycusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sportycus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sportycus";
+			};
+			name = Release;
+		};
 		C5CD0B8F2DE87D6B00273B03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -940,6 +1052,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C5B995012DF270A50053E012 /* Build configuration list for PBXNativeTarget "SportycusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5B994FF2DF270A50053E012 /* Debug */,
+				C5B995002DF270A50053E012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C5CD0B782DE87D6700273B03 /* Build configuration list for PBXProject "Sportycus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
