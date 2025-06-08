@@ -4,6 +4,8 @@ target 'Sportycus' do
   use_frameworks!
  
   pod 'Kingfisher', '7.12'
+  pod 'lottie-ios', '4.2.0'
+  pod 'ReachabilitySwift', '5.0.0'
  
   post_install do |installer|
     installer.pods_project.targets.each do |target|

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,46 +17,56 @@
                 <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RcX-Qe-xkt">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZW-DR-asr">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Rectangle 167" translatesAutoresizingMaskIntoConstraints="NO" id="WYe-Js-uBR">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="325"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RcX-Qe-xkt">
+                                <rect key="frame" x="100" y="100" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="DWQ-gD-Ia3"/>
+                                    <constraint firstAttribute="height" constant="100" id="M0J-lH-g6g"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsb-tz-hPr">
+                                <rect key="frame" x="0.0" y="212" width="300" height="25.333333333333343"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="300" id="8Ms-O5-MKS"/>
-                            <constraint firstAttribute="width" constant="300" id="ygk-LH-Bja"/>
+                            <constraint firstItem="qsb-tz-hPr" firstAttribute="trailing" secondItem="cZW-DR-asr" secondAttribute="trailing" id="0da-Gd-jzk"/>
+                            <constraint firstItem="qsb-tz-hPr" firstAttribute="leading" secondItem="cZW-DR-asr" secondAttribute="leading" id="5FZ-Ql-aAg"/>
+                            <constraint firstItem="RcX-Qe-xkt" firstAttribute="centerY" secondItem="WYe-Js-uBR" secondAttribute="centerY" id="8ql-JQ-FoV"/>
+                            <constraint firstItem="WYe-Js-uBR" firstAttribute="top" secondItem="cZW-DR-asr" secondAttribute="top" id="BDv-Mw-YIe"/>
+                            <constraint firstItem="qsb-tz-hPr" firstAttribute="top" secondItem="RcX-Qe-xkt" secondAttribute="bottom" constant="12" id="MgH-Ox-ftb"/>
+                            <constraint firstAttribute="bottom" secondItem="WYe-Js-uBR" secondAttribute="bottom" id="Tq0-84-2GY"/>
+                            <constraint firstItem="RcX-Qe-xkt" firstAttribute="centerX" secondItem="WYe-Js-uBR" secondAttribute="centerX" id="ZDD-ng-ccE"/>
+                            <constraint firstAttribute="trailing" secondItem="WYe-Js-uBR" secondAttribute="trailing" id="qZy-NM-nxT"/>
+                            <constraint firstItem="WYe-Js-uBR" firstAttribute="leading" secondItem="cZW-DR-asr" secondAttribute="leading" id="yp5-SA-7Au"/>
                         </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsb-tz-hPr">
-                        <rect key="frame" x="0.0" y="260" width="300" height="40"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.44727891156462596" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="40" id="1ox-wL-ZrX"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" systemColor="systemGray6Color"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="RcX-Qe-xkt" secondAttribute="trailing" id="1Pz-6f-70G"/>
-                <constraint firstItem="RcX-Qe-xkt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="EQ1-Fn-Z8o"/>
-                <constraint firstAttribute="trailing" secondItem="qsb-tz-hPr" secondAttribute="trailing" id="OwI-uK-kS9"/>
-                <constraint firstItem="qsb-tz-hPr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="TVz-pP-h4K"/>
-                <constraint firstItem="RcX-Qe-xkt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fJU-ya-czn"/>
-                <constraint firstAttribute="bottom" secondItem="RcX-Qe-xkt" secondAttribute="bottom" id="hDa-Jq-ReX"/>
-                <constraint firstAttribute="bottom" secondItem="qsb-tz-hPr" secondAttribute="bottom" id="rsh-vl-Cia"/>
+                <constraint firstItem="cZW-DR-asr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0pP-nd-4Wz"/>
+                <constraint firstAttribute="trailing" secondItem="cZW-DR-asr" secondAttribute="trailing" id="2De-5i-dPt"/>
+                <constraint firstItem="cZW-DR-asr" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DRu-UZ-230"/>
+                <constraint firstAttribute="bottom" secondItem="cZW-DR-asr" secondAttribute="bottom" id="Vxe-Au-PTc"/>
             </constraints>
             <size key="customSize" width="150" height="159"/>
             <connections>
                 <outlet property="img" destination="RcX-Qe-xkt" id="NXi-vB-b4B"/>
                 <outlet property="sportTitle" destination="qsb-tz-hPr" id="0oA-Ir-cga"/>
             </connections>
-            <point key="canvasLocation" x="206.10687022900763" y="27.112676056338028"/>
+            <point key="canvasLocation" x="206.10687022900763" y="26.760563380281692"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="Rectangle 167" width="165" height="213"/>
     </resources>
 </document>

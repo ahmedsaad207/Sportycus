@@ -29,8 +29,7 @@ class LeaguesCoreData {
         }
     }
     
-    func addLeague(league: League) {
-        print("addLeague")
+    func addLeague(league: League, sportType: String) {
         
         let context = persistentContainer.viewContext
         
@@ -39,6 +38,8 @@ class LeaguesCoreData {
             newLeague.leagueKey = Int64(league.league_key ?? 0)
             newLeague.leagueName = league.league_name
             newLeague.leagueLogo = league.league_logo
+            newLeague.leagueCountry = league.country_name
+            newLeague.sportType = sportType
             newLeague.isFavorite = true
             try context.save()
         } catch {

@@ -9,41 +9,38 @@ protocol LeaguePresenterProtocol{
    
 }
 
-
 class LeaguePresenter: LeaguePresenterProtocol {
-    
-    
-    
-    var vc:LeagueViewProtocol?
-    
-    var leagues: [League] = []
-    
-    private var sportType: SportType!
-    
+
+    var vc: LeagueViewProtocol?
+    private var leagues: [League] = []
+    private var sportType: SportType
+
     init(vc: LeagueViewProtocol, sportType: SportType) {
         self.vc = vc
         self.sportType = sportType
     }
-    
-    func getLeaguesCount() -> Int {
-        self.leagues.count
-    }
-    
-    func league(at index: Int) -> League {
-        return leagues[index]
-    }
-    
+
     func getSportType() -> SportType {
         return sportType
     }
-    
+
+    func getLeaguesCount() -> Int {
+        leagues.count
+    }
+
+    func league(at index: Int) -> League {
+        leagues[index]
+    }
+
     func getLeagues() {
-        LeagueService().getLeagues(completion: { leaguesResponse in
+        LeagueService().getLeagues(completion: { [weak self] leaguesResponse in
+            guard let self = self else { return }
             if let response = leaguesResponse {
                 self.leagues = response.result
-                self.vc!.renderToView(data: response.result)
+                DispatchQueue.main.async {
+                    self.vc?.renderToView(data: response.result)
+                }
             }
         }, sport: sportType.path)
     }
 }
-

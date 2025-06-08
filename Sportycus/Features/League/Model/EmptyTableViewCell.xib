@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyTableViewCell" rowHeight="432" id="KGk-i7-Jjw" customClass="EmptyTableViewCell" customModule="Sportycus" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="577" height="432"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="577" height="432"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Coaches Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgz-ss-WkE">
+                        <rect key="frame" x="215.66666666666663" y="291" width="146" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4s-1s-RTd" customClass="LottieAnimationView" customModule="Lottie">
+                        <rect key="frame" x="213.66666666666663" y="141" width="150" height="150"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="G7Y-eh-0yK"/>
+                            <constraint firstAttribute="height" constant="150" id="yal-nj-kNc"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="empty"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Wgz-ss-WkE" firstAttribute="top" secondItem="U4s-1s-RTd" secondAttribute="bottom" id="3qb-Gj-ifB"/>
+                    <constraint firstItem="Wgz-ss-WkE" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="EPC-Mv-v62"/>
+                    <constraint firstItem="U4s-1s-RTd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="crM-JF-jqU"/>
+                    <constraint firstItem="U4s-1s-RTd" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="u8B-y5-4Ic"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="animationView" destination="U4s-1s-RTd" id="kWa-8Y-j7D"/>
+                <outlet property="playerLabel" destination="Wgz-ss-WkE" id="ivp-ZM-lH7"/>
+            </connections>
+            <point key="canvasLocation" x="209.92366412213741" y="125.35211267605635"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

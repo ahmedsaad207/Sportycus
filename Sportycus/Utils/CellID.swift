@@ -14,5 +14,6 @@ enum CellID: String {
     case upcomingEventCell = "UpcomingEventsCell"
     case latestEventCell = "LatestEventsCell"
     case teamCell = "TeamsCell"
+    case emptyCell = "EmptyCollectionViewCell"
     case sectionHeader = "Header"
 }

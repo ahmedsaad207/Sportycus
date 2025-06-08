@@ -10,6 +10,7 @@ import Kingfisher
 
 class UpcomingEventsCell: UICollectionViewCell {
 
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var homeTeamName: UILabel!
@@ -21,13 +22,39 @@ class UpcomingEventsCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func config(time:String, date:String, homeName:String, awayName:String, awayTeamImg:String, homeTeamImg:String){
+    func config(time: String, date: String, homeName: String, awayName: String, awayTeamImg: String, homeTeamImg: String) {
+        
+        self.container.backgroundColor = AppColors.navyColor.withAlphaComponent(0.8)
         self.awayTeamName.text = awayName
         self.homeTeamName.text = homeName
         self.timeLabel.text = time
         self.dateLabel.text = date
-        self.awayTeamImg.kf.setImage(with: URL(string: awayTeamImg), placeholder: UIImage(systemName: "photo"))
-        self.homeTeamImg.kf.setImage(with: URL(string: homeTeamImg), placeholder: UIImage(systemName: "photo"))
+
+        self.awayTeamImg.contentMode = .scaleAspectFit
+        self.homeTeamImg.contentMode = .scaleAspectFit
+
+        if let awayUrl = URL(string: awayTeamImg) {
+            KingfisherManager.shared.retrieveImage(with: awayUrl) { result in
+                switch result {
+                case .success(let value):
+                        self.awayTeamImg.image = value.image
+                case .failure:
+                    self.awayTeamImg.image = UIImage(named: "player")
+                }
+            }
+        }
+
+        if let homeUrl = URL(string: homeTeamImg) {
+            KingfisherManager.shared.retrieveImage(with: homeUrl) { result in
+                switch result {
+                case .success(let value):
+                        self.homeTeamImg.image = value.image
+                case .failure:
+                    self.homeTeamImg.image = UIImage(named: "player")
+                }
+            }
+        }
     }
+
 
 }
