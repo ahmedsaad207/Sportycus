@@ -51,6 +51,7 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
     }
     
     func setupAppbar() {
+        view?.showLoadingIndicator()
         DispatchQueue.main.async {
             self.view?.setNavigationTitle(title: self.league.league_name ?? "")
         }
@@ -81,6 +82,7 @@ class LeagueDetailsPresenter: LeagueDetailsPresenterProtocol {
             let leagueID = self.league.league_key!
             self.getLeagueTeams(leagueId: leagueID, sportName: self.sportType.path)
             self.handleLeagueDetailsResponse(response: res)
+            self.view?.hideLoadingIndicator()
         }
     }
     

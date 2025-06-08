@@ -103,7 +103,7 @@ class TeamController: UITableViewController, TeamViewProtocol {
             return 230
         }
         
-        if team.coaches?.count ?? 0 == 0 || team.players?.count ?? 0 == 0{ return 160} else {}
+        if team.coaches?.count ?? 0 == 0 || team.players?.count ?? 0 == 0{ return 220} else {}
         return 96
     }
 

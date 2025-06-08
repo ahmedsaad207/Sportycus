@@ -1,12 +1,16 @@
 import UIKit
+import Lottie
 
 class EmptyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var playerLabel: UILabel!
-    @IBOutlet weak var playerImageView: UIImageView!
+    @IBOutlet weak var animationView: LottieAnimationView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 0.5
+        animationView.play()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

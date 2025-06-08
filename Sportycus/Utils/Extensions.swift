@@ -33,9 +33,11 @@ extension UIViewController {
     }
     
     func hideIndicator() {
-        if let indicator = view.viewWithTag(tag) as? UIActivityIndicatorView {
-            indicator.stopAnimating()
-            indicator.removeFromSuperview()
+        DispatchQueue.main.async {
+            if let indicator = self.view.viewWithTag(tag) as? UIActivityIndicatorView {
+                indicator.stopAnimating()
+                indicator.removeFromSuperview()
+            }
         }
     }
 }
